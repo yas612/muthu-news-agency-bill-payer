@@ -10,7 +10,9 @@ public interface UserService {
 	public List<User> getAllUser() throws CustomException;
 	public User addUser(User user) throws CustomException;
 	public Boolean removeUser(String mob);
-	public void updateUser(User user) throws CustomException;
+	public Boolean updateUser(User user) throws CustomException;
 	public User getAUser(String mob);
+	public void updateStatus(String mob);
+	public String updateAllUserStatus();
 
 }

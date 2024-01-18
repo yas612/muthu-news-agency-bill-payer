@@ -9,7 +9,7 @@ public interface ProductService {
 	
 	public List<Product> getAll() throws CustomException;
 	public Product addProduct(Product product);
-	public Product updateProduct(Product product) throws CustomException;
+	public Product updateProduct(Product product, Double diff) throws CustomException;
 	public Boolean remProduct(String code);
 	public Product getAProduct(String code);
 

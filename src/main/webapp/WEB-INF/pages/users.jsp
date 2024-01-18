@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Muthu News</title>
+<title>Muthu News Agency</title>
 </head>
 <body>
 	<h1> ${erroMsg}</h1>

@@ -4,18 +4,15 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Muthu News Agency</title>
+<title>Insert title here</title>
 </head>
 <body>
+<p>${errorMsg}</p>
 <h3><a href="/muthu-news-agency-bill-payer/admin/user/all"><span>User Home</span></a></h3>
- <div>
- <form action="deluser">
- 	<label for="Mobile Number">Mobile Number</label>
- 	<input type="text" name="mob" value="${mob}" required readonly/><br>
- 	<input type="submit" value="DELETE"/>
- </form>
- 
-  <p>${errorMsg}</p>
-</div>
+<a href='status'> 
+        <button class="GFG"> 
+            Reset status 
+        </button> 
+    </a> 
 </body>
 </html>

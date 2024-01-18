@@ -5,10 +5,9 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Muthu News</title>
+<title>Muthu News Agency</title>
 </head>
 <body>
-	<h1> ${erroMsg}</h1>
 	<h3><a href="/muthu-news-agency-bill-payer/admin"><span>Home</span></a></h3>
 	<h6><a href="all/addproductPage"><span>Add Product</span></a></h6>
 	<table>
@@ -27,5 +26,7 @@
 			</tr>
 		</c:forEach>
 	</table>
+	
+	<h1> ${erroMsg}</h1>
 </body>
 </html>

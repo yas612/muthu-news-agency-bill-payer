@@ -1,0 +1,25 @@
+@charset "ISO-8859-1";
+
+body {
+	text-align: center;
+	background-color: powderblue;
+}
+
+form {
+	display: inline-block;
+}
+
+.form-center {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.form-box {
+	background-color: #fefde0;
+	width: 300px;
+	border: 2px solid #61bafc;
+	padding: 50px;
+	margin: 20px;
+}

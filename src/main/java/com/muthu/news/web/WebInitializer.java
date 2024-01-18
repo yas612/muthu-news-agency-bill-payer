@@ -21,7 +21,7 @@ public class WebInitializer extends AbstractAnnotationConfigDispatcherServletIni
 	@Override
 	protected String[] getServletMappings() {
 		// TODO Auto-generated method stub
-		return new String[] {"/", "/admin/user*"};
+		return new String[] {"/", "/admin/user*", "/pay*"};
 	}
 
 }
