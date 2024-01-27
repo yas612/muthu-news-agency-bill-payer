@@ -19,6 +19,6 @@
 	<p>Payment Status : ${user.status}</p>
 	<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 	<script src="<c:url value="/resources/js/pay.js" />"></script>
-	<button id="rzp-button1" value="Pay" ${decider} onclick="createOrderId('${user.bill}', '${user.mob}', '${url}')"></button>
+	<button id="rzp-button1" value="Pay" ${decider} onclick="createOrderId('${user.bill}', '${user.mob}', '${url}')">Pay</button>
 </body>
 </html>

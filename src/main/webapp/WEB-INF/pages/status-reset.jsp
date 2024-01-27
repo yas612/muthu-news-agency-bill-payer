@@ -10,9 +10,7 @@
 <p>${errorMsg}</p>
 <h3><a href="/muthu-news-agency-bill-payer/admin/user/all"><span>User Home</span></a></h3>
 <a href='status'> 
-        <button class="GFG"> 
-            Reset status 
-        </button> 
-    </a> 
+        <button class="GFG"> Reset status </button> 
+</a> 
 </body>
 </html>

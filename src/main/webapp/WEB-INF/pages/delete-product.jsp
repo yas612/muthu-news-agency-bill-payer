@@ -7,7 +7,11 @@
 <title>Muthu News Agency</title>
 </head>
 <body>
-<h3><a href="/muthu-news-agency-bill-payer/admin/product/all"><span>Product Home</span></a></h3>
+<h3>
+	<a href="/muthu-news-agency-bill-payer/admin/product/all">
+        <button class="GFG"> Paper Home </button> 
+    </a>
+	</h3>
 <form action="delProduct">
  	<label for="Product Code">Code</label>
  	<input type="text" name="code" value="${code}" required readonly /><br>

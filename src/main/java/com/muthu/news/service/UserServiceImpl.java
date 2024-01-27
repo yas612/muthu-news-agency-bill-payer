@@ -122,7 +122,7 @@ public class UserServiceImpl implements UserService {
 		User user = null;
 		logger.info("Fetching a user with ID : " + mob);
 		try {
-			jdbcTemplate.queryForObject(MuthuConstants.GET_USER_BY_MOB, new Object[] { mob }, new UserRowMapper());
+			user = jdbcTemplate.queryForObject(MuthuConstants.GET_USER_BY_MOB, new Object[] { mob }, new UserRowMapper());
 		} catch (Exception e) {
 			logger.error("ERROR occurred while fetching a user with ID : " + mob);
 			logger.error(e.getMessage());

@@ -8,8 +8,20 @@
 </head>
 <body>
 	<h3>Welcome Admin</h3>	
-		<span><a href="admin/user/all">USERS</a></span>
-		<span><a href="admin/product/all">PAPERS</a></span>
-		<span><a href="admin/user/all/reset/page">Reset Status</a></span>
+	<span>
+		<a href="admin/user/all">
+        <button class="GFG"> USERS </button> 
+    	</a>
+    </span>
+    <span>
+		<a href="admin/product/all">
+        <button class="GFG"> PAPERS </button> 
+    	</a>
+    </span>
+    <span>
+		<a href="admin/user/all/reset/page">
+        <button class="GFG"> Reset Status </button> 
+    	</a>
+    </span>
 </body>
 </html>

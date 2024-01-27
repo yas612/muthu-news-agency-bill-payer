@@ -8,7 +8,11 @@
 <title>Muthu News Agency</title>
 </head>
 <body>
-<h3><a href="/muthu-news-agency-bill-payer/admin/user/all"><span>User Home</span></a></h3>
+<h3>
+		<a href="/muthu-news-agency-bill-payer/admin/user/all">
+			<button class="GFG">User home</button>
+		</a>
+	</h3>
 <div>
 <form action="adduser">
 		

@@ -3,6 +3,7 @@ package com.muthu.news.web;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import com.muthu.news.config.MuthuNewsConfig;
+import com.muthu.news.config.MuthuNewsSecurityConfig;
 
 public class WebInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
@@ -15,7 +16,7 @@ public class WebInitializer extends AbstractAnnotationConfigDispatcherServletIni
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
 		
-		return new Class[] {MuthuNewsConfig.class};
+		return new Class[] {MuthuNewsConfig.class, MuthuNewsSecurityConfig.class};
 	}
 
 	@Override

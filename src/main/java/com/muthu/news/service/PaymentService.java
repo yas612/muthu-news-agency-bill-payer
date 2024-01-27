@@ -15,4 +15,5 @@ public interface PaymentService {
 			throws ServletException, IOException; 
 	void payOrder(HttpServletRequest request, HttpServletResponse response, String amount) 
 			  throws RazorpayException, IOException;
+	void updatePaymentDetail() throws RazorpayException;
 }

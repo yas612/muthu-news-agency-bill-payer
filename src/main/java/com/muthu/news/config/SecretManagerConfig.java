@@ -14,10 +14,16 @@ public class SecretManagerConfig {
 
 	@Value("${KEY_SECRET}")
 	private String secret;
+	
+	@Value("${adSec}")
+	private String adSec;
+	
+	@Value("${adPs}")
+	private String adPs;
 
 	@Bean
 	public SecretManager manager() {
-		return new SecretManager(key, secret);
+		return new SecretManager(key, secret, adSec, adPs);
 
 	}
 

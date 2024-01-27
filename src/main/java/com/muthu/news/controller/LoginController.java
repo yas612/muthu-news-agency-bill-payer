@@ -1,6 +1,7 @@
 package com.muthu.news.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class LoginController {
 
 	private static final Logger logger = Logger.getLogger(LoginController.class);
 
-	@RequestMapping("/")
+	@RequestMapping("/loginpage")
 	public ModelAndView login() {
 		ModelAndView mView = new ModelAndView();
 		mView.setViewName(MuthuConstants.LOGIN_PAGE);
@@ -61,4 +62,12 @@ public class LoginController {
 		mView.setViewName(MuthuConstants.ADMIN_PAGE);
 		return mView;
 	}
+	
+	/*
+	 * @RequestMapping(value = "/admin/logout") public String
+	 * logout(HttpServletRequest request) { HttpSession session =
+	 * request.getSession(false); if (session != null) { session.invalidate();
+	 * session.setMaxInactiveInterval(60*60); } return "redirect:/loginpage";
+	 * //Where you go after logout here. }
+	 */
 }

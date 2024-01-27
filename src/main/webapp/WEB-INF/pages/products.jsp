@@ -8,8 +8,16 @@
 <title>Muthu News Agency</title>
 </head>
 <body>
-	<h3><a href="/muthu-news-agency-bill-payer/admin"><span>Home</span></a></h3>
-	<h6><a href="all/addproductPage"><span>Add Product</span></a></h6>
+	<h3>
+		<a href="/muthu-news-agency-bill-payer/admin">
+        <button class="GFG"> Home </button> 
+    	</a>
+    </h3>
+	<h6>
+		<a href="all/addproductPage">
+        <button class="GFG"> Add Paper </button> 
+    	</a>
+    </h6>
 	<table>
 		<tr>
 			<th>Product Code</th>

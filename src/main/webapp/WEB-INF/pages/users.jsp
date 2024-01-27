@@ -8,9 +8,16 @@
 <title>Muthu News Agency</title>
 </head>
 <body>
-	<h1> ${erroMsg}</h1>
-	<h3><a href="/muthu-news-agency-bill-payer/admin"><span>Home</span></a></h3>
-	<h6><a href="all/adduserPage"><span>Add User</span></a></h6>
+	<h3>
+		<a href="/muthu-news-agency-bill-payer/admin">
+        <button class="GFG"> Home </button> 
+    	</a>
+    </h3>
+	<h6>
+		<a href="all/adduserPage">
+        <button class="GFG"> Add User </button> 
+    	</a>
+    </h6>
 	<table>
 		<tr>
 			<th>Mobile Number</th>
@@ -33,5 +40,6 @@
 			</tr>
 		</c:forEach>
 	</table>
+	<p>${erroMsg}</p>
 </body>
 </html>
