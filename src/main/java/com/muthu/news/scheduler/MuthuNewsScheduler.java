@@ -8,6 +8,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
+import com.muthu.news.constants.MuthuConstants;
 import com.muthu.news.service.PaymentService;
 import com.razorpay.RazorpayException;
 
@@ -22,7 +23,7 @@ public class MuthuNewsScheduler {
 	private static final Logger logger = Logger.getLogger(MuthuNewsScheduler.class);
 
 	@Async
-	@Scheduled(cron = "0 0 0 * * ?")
+	@Scheduled(cron = MuthuConstants.SCHEDULE)
 	public void scheduleTask() throws RazorpayException {
 		logger.info("Scheduled updation process started");
 		service.updatePaymentDetail();

@@ -9,7 +9,7 @@
 <body>
 	<h3>Welcome Admin</h3>	
 	<span>
-		<a href="admin/user/all">
+		<a href="admin/user/all?page=1">
         <button class="GFG"> USERS </button> 
     	</a>
     </span>

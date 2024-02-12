@@ -1,6 +1,12 @@
 package com.muthu.news.controller;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,18 +33,94 @@ public class UserController {
 	private ProductService pService;
 
 	@RequestMapping("/all")
-	public ModelAndView allUsers() throws CustomException {
-		List<User> userlist = service.getAllUser();
+	public ModelAndView allUsers(HttpServletRequest request, @RequestParam String page) throws CustomException {
+		int recordsPerPage = 50;
+		int reqPage = Integer.parseInt(page);
+		
+		List<User> userlist = service.getAllUser(recordsPerPage, ((reqPage*recordsPerPage)-recordsPerPage));
+
+		int noOfRecords = service.getUsersCounts();
+
 		ModelAndView mView = new ModelAndView();
 		mView.setViewName(MuthuConstants.USERS_PAGE);
 		if (userlist == null) {
 			mView.addObject(MuthuConstants.ERROR_MSG, MuthuConstants.USER_FETCH_ERROR);
 			return mView;
 		} else {
+			Set<String> reg = service.getAllUser().stream().map(User::getReg).collect(Collectors.toSet());
+			int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
+			request.setAttribute("noOfPages", noOfPages);
+			mView.addObject("reg", reg);
+			request.setAttribute("currentPage", page);
 			mView.addObject("userlist", userlist);
 			return mView;
 		}
 
+	}
+	
+	@RequestMapping("/all/filter/{params}")
+	public ModelAndView allUsersByFilter(HttpServletRequest request, @RequestParam String page, @PathVariable String params) throws CustomException {
+		int recordsPerPage = 50;
+		int reqPage = Integer.parseInt(page);
+		
+		List<User> userlist = service.getAllUserByFilter(recordsPerPage, ((reqPage*recordsPerPage)-recordsPerPage), params);
+
+		
+
+		ModelAndView mView = new ModelAndView();
+		mView.setViewName("users-filters");
+		if (userlist == null) {
+			mView.addObject(MuthuConstants.ERROR_MSG, MuthuConstants.USER_FETCH_ERROR);
+			return mView;
+		} else {
+			int dummyVal = userlist.size()-1;
+			int noOfRecords = Integer.parseInt(userlist.get(dummyVal).getMob());
+			userlist.remove(userlist.size()-1);
+			Set<String> reg = service.getAllUser().stream().map(User::getReg).collect(Collectors.toSet());
+			int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
+			request.setAttribute("noOfPages", noOfPages);
+			request.setAttribute("currentPage", page);
+			mView.addObject("userlist", userlist);
+			return mView;
+		}
+
+	}
+	
+	@RequestMapping("/filter/filters")
+	public void buildPath(@RequestParam List<String> params, HttpServletRequest request, HttpServletResponse response) throws IOException {
+		StringBuilder urlBuilder = new StringBuilder();
+		urlBuilder.append("/muthu-news-agency-bill-payer/admin/user/all/filter/");
+		if(params.size() == 1) {
+			urlBuilder.append(params.get(0));
+			urlBuilder.append("filter?page=1");
+		}
+		else {
+			int lastindex = params.size()-1;
+			String lastElement = params.get(lastindex);
+		for(String url : params) {
+			urlBuilder.append(url);
+			if(!(url.equalsIgnoreCase(lastElement))) {
+			urlBuilder.append("filter");
+			}
+		}
+		urlBuilder.append("?page=1");
+		}
+		response.sendRedirect(urlBuilder.toString());
+	}
+	
+	@RequestMapping("search/user")
+	public ModelAndView searchAUser(@RequestParam String mob) {
+		User user = service.getAUser(mob);
+		ModelAndView mView = new ModelAndView();
+		mView.setViewName("user-search");
+		if(user == null) {
+			mView.addObject("errorMsg", "User not exist");
+			return mView;
+		}
+		else {
+			mView.addObject("user", user);
+			return mView;
+		}
 	}
 
 	@RequestMapping("/all/editPage/{mob}")
@@ -137,7 +219,7 @@ public class UserController {
 		mView.setViewName(MuthuConstants.STATUS_REST_PAGE);
 		return mView;
 	}
-	
+
 	@RequestMapping("/all/reset/status")
 	public ModelAndView updateAllUsersStatus() {
 		ModelAndView mView = new ModelAndView();

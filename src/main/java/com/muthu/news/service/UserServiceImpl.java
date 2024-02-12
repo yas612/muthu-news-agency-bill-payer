@@ -3,6 +3,7 @@ package com.muthu.news.service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,6 @@ import com.muthu.news.Product;
 import com.muthu.news.User;
 import com.muthu.news.constants.MuthuConstants;
 import com.muthu.news.exception.CustomException;
-import com.muthu.news.mapper.ProductRowMapper;
 import com.muthu.news.mapper.UserRowMapper;
 
 @Service
@@ -27,8 +27,86 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private ProductService pService;
 
+	@SuppressWarnings("deprecation")
 	@Override
-	public List<User> getAllUser() throws CustomException {
+	public List<User> getAllUser(int limit, int offSet) throws CustomException {
+		List<User> allUsers = null;
+		logger.info("Fetching all the users.");
+		try {
+			allUsers = jdbcTemplate.query(MuthuConstants.GET_ALL_USERS_BY_LIMIT, new Object[] {limit, offSet}, new UserRowMapper());
+
+		} catch (Exception e) {
+			logger.error("ERROR occurred while fetching users.");
+			logger.error(e.getMessage());
+		}
+		if (allUsers == null) {
+			logger.error("No Users fetched.");
+			return null;
+		}
+		logger.info("Total users fetched : " + allUsers.size());
+		return allUsers;
+	}
+	
+	@SuppressWarnings("deprecation")
+	@Override
+	public List<User> getAllUserByFilter(int limit, int offSet, String filter) throws CustomException {
+		List<User> allUsers = null;
+		int filteredUsersCount = 0;
+		User dummyVal = new User();
+		String[] filters = filter.split("filter");
+		StringBuilder queryBuilder = new StringBuilder();
+		StringBuilder queryBuilderForCount = new StringBuilder();
+		queryBuilderForCount.append("select COUNT(*) from \"muthuUsers\"");
+		queryBuilder.append("select * from \"muthuUsers\"");
+		for(String each : filters) {
+			if(filters[0].equalsIgnoreCase(each)) {
+			queryBuilder.append(" WHERE ");
+			queryBuilderForCount.append(" WHERE ");
+			if(each.contains("PAID")) {
+				queryBuilder.append("status ='"+each+"'");
+				queryBuilderForCount.append("status ='"+each+"'");
+			}
+			else {
+				queryBuilder.append("reg ='"+each+"'");
+				queryBuilderForCount.append("reg ='"+each+"'");
+			}
+			}
+			else {
+				queryBuilder.append(" AND ");
+				queryBuilderForCount.append(" AND ");
+				
+				if(each.contains("PAID")) {
+					queryBuilder.append("status ='"+each+"'");
+					queryBuilderForCount.append("status ='"+each+"'");
+				}
+				else {
+					queryBuilder.append("reg ='"+each+"'");
+					queryBuilderForCount.append("reg ='"+each+"'");
+				}
+			}
+		}
+		queryBuilder.append(" LIMIT ? OFFSET ?");
+		//queryBuilderForCount.append(" LIMIT ? OFFSET ?");
+		logger.info("Fetching all the users for filter : "+filters.toString());
+		try {
+			allUsers = jdbcTemplate.query(queryBuilder.toString(), new Object[] {limit, offSet}, new UserRowMapper());
+			filteredUsersCount = jdbcTemplate.queryForObject(queryBuilderForCount.toString(), Integer.class);
+		} catch (Exception e) {
+			logger.error("ERROR occurred while fetching users.");
+			logger.error(e.getMessage());
+		}
+		if (allUsers == null) {
+			logger.error("No Users fetched.");
+			return null;
+		}
+		dummyVal.setMob(Integer.toString(filteredUsersCount));
+		allUsers.add(allUsers.size(), dummyVal);
+		logger.info("Total users fetched : " + allUsers.size());
+		return allUsers;
+	}
+	
+	@Override
+	public List<User> getAllUser(){
 		List<User> allUsers = null;
 		logger.info("Fetching all the users.");
 		try {
@@ -152,6 +230,17 @@ public class UserServiceImpl implements UserService {
 			logger.error("ERROR occurred while updating all users status.");
 			logger.error(e.getMessage());
 			return MuthuConstants.FAILED_UPDATE_STATUS_MSG;
+		}
+	}
+
+	@Override
+	public int getUsersCounts() {
+		List<User> users = getAllUser();
+		if(users.size() > 0) {
+			return users.size();
+		}
+		else {
+			return 0;
 		}
 	}
 }

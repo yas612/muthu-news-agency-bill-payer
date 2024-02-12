@@ -30,6 +30,14 @@ public class MuthuConstants {
 	public static final String EXPECTED_PAY_STATUS = "captured";
 	public static final String EMPTY_VALUE = "";
 	public static final String DATE_FORMAT = "dd-MM-yyyy hh:mm:ss";
+	public static final String SCHEDULE = "00 00 03 * * *";
+	public static final String ADMIN_ROLE = "ADMIN";
+	public static final String LOGIN_PAGE_EXCLUDE = "/loginpage";
+	public static final String LOGIN_PATH_EXCLUDE = "/login**";
+	public static final String PAYMENT_PATH_EXCLUDE = "/pay/**";
+	public static final String PAYMENT_VERIFY_EXCLUDE = "/pay/verify/**";
+	public static final String RESOURCES_EXCLUDE = "/resources/**";
+	public static final String ADMIN_PATH = "/admin/**";
 	
 	//json
 	public static final String AMOUNT = "amount";
@@ -78,7 +86,9 @@ public class MuthuConstants {
 	// user
 	public static final String GET_USER_BY_MOB = "SELECT * FROM \"muthuUsers\" WHERE mob =?";
 	public static final String GET_ALL_USERS = "SELECT * FROM \"muthuUsers\"";
+	public static final String GET_ALL_USERS_BY_LIMIT = "select * from \"muthuUsers\" LIMIT ? OFFSET ?";
 	public static final String DEL_USER = "DELETE FROM \"muthuUsers\" WHERE mob=?";
+	public static final String GET_USERS_COUNT = "";
 	public static final String AFFETCTED_USERS = "SELECT * FROM \"muthuUsers\" WHERE papers LIKE '%param%'";
 	public static final String UPDATE_USER_BILL = "UPDATE \"muthuUsers\" SET bill=? WHERE mob=?";
 	public static final String UPDATE_USER_STATUS = "UPDATE \"muthuUsers\" SET status=? WHERE mob=?";

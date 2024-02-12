@@ -3,7 +3,7 @@ package com.muthu.news.web;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import com.muthu.news.config.MuthuNewsConfig;
-import com.muthu.news.config.MuthuNewsSecurityConfig;
+import com.muthu.news.security.MuthuNewsSecurityConfig;
 
 public class WebInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 

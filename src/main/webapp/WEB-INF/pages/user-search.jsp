@@ -9,12 +9,10 @@
 <link href="${pageContext.request.contextPath}/resources/css/userinfo.css" rel="stylesheet" >
 </head>
 <body>
-	<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-	<script src="<c:url value="/resources/js/pay.js" />"></script>
-
 <div class="container">
 	<h2>Cutomer Details</h2>
 	<div class="table-container">
+	<p>${errorMsg}</p>
 	<table>
 		<tr>
 			<th>Name</th>
@@ -29,6 +27,10 @@
 			<td>${user.papers}</td>
 		</tr>
 		<tr>
+			<th>Papers Availed</th>
+			<td>${user.reg}</td>
+		</tr>
+		<tr>
 			<th>Bill</th>
 			<td>${user.bill}</td>
 		</tr>
@@ -36,9 +38,16 @@
 			<th>Payment Status</th>
 			<td>${user.status}</td>
 		</tr>
+		<tr>
+			<th>Edit</th>
+			<td><a href="/muthu-news-agency-bill-payer/admin/user/all/editPage/${user.mob}">Edit</a></td>
+		</tr>
+		<tr>
+			<th>Delete</th>
+			<td><a href="/muthu-news-agency-bill-payer/admin/user/all/delPage/${user.mob}">Delete</a></td>
+		</tr>
 	</table>
-	</div><br>
-	<button id="rzp-button1" value="Pay" ${decider} onclick="createOrderId('${user.bill}', '${user.mob}', '${url}')">Pay</button>
+	</div>
 	</div>
 </body>
 </html>

@@ -45,7 +45,7 @@ public class PaymentServiceImpl implements PaymentService {
 	public void doPost(HttpServletRequest request, HttpServletResponse response, String mob, String payid,
 			String orderid, String sig) throws ServletException, IOException {
 		RazorpayClient razorpay = null;
-		logger.info("Payment has been done by user : " + mob + "for order id : " + orderid
+		logger.info("Payment has been done by user : " + mob + " for order id : " + orderid
 				+ " & verification is in progress");
 		try {
 			razorpay = new RazorpayClient(manager.getKey(), manager.getSecret());
@@ -61,16 +61,16 @@ public class PaymentServiceImpl implements PaymentService {
 
 				if (finalPayStatus.equalsIgnoreCase(MuthuConstants.EXPECTED_PAY_STATUS)) {
 
-					logger.info("Payment verification is SUCCESS for user : " + mob + "for order id : " + orderid);
+					logger.info("Payment verification is SUCCESS for user : " + mob + " for order id : " + orderid);
 					service.updateStatus(mob);
 					updatePayRec(payid, mob, orderid);
 				}
 
 			} else {
-				logger.error("Payment verification FAILED for user : " + mob + "for order id : " + orderid);
+				logger.error("Payment verification FAILED for user : " + mob + " for order id : " + orderid);
 			}
 		} catch (Exception e) {
-			logger.error("ERROR while verifying payment for user : " + mob + "for order id : " + orderid);
+			logger.error("ERROR while verifying payment for user : " + mob + " for order id : " + orderid);
 			logger.error(e.getMessage());
 		}
 
@@ -159,27 +159,29 @@ public class PaymentServiceImpl implements PaymentService {
 					logger.info("Fetching payment detail from Razorpay for order id : " + payment.getOrderid());
 					List<Payment> possiblePayments = razorpay.orders.fetchPayments(payment.getOrderid());
 					if (!CollectionUtils.isEmpty(possiblePayments)) {
-						logger.info("Number of payments for order id : " + payment.getOrderid() + " is "
+						logger.info("Number of payments found for order id : " + payment.getOrderid() + " is "
 								+ possiblePayments.size());
 						for (Payment pay : possiblePayments) {
-							List<JSONObject> items = pay.get("items");
-							if (!CollectionUtils.isEmpty(items)) {
-								logger.info("Number of items in payment" + items.size());
-								for (JSONObject item : items) {
-									if (item.getString("status").equalsIgnoreCase("captured")) {
-										logger.info("Payment status is captured");
-										logger.info("Updating payment record in payment table");
-										updatePayRec(item.getString("id"), payment.getMob(), payment.getOrderid());
-										logger.info("Updating payment record in users table");
-										service.updateStatus(payment.getMob());
-										logger.info("Scheduled updation process ENDED");
-									}
+							if (pay != null) {
+								if (pay.get("status").toString().equalsIgnoreCase("captured")) {
+									logger.info("Payment status is captured");
+									logger.info("Updating payment record in payment table");
+									String num = pay.get("contact").toString();
+									updatePayRec(pay.get("id").toString(), num.replace("+91", "").toString(),
+											payment.getOrderid());
+									logger.info("Updating payment record in users table");
+									service.updateStatus(payment.getMob());
+									logger.info("Scheduled updation process ENDED");
+
+								} else {
+									logger.info("No payment is made against orderid : " + payment.getOrderid()
+											+ " & marking it as NOT-ELIGIBLE");
+									template.update(MuthuConstants.NON_ELIGIBLE_ORDER,
+											new Object[] { payment.getOrderid() });
 								}
+
 							} else {
-								logger.info("No payment is made against orderid : " + payment.getOrderid()
-										+ " & marking it as NOT-ELIGIBLE");
-								template.update(MuthuConstants.NON_ELIGIBLE_ORDER,
-										new Object[] { payment.getOrderid() });
+								logger.error("Payment object retrieved is NULL");
 							}
 						}
 					}

@@ -15,25 +15,11 @@
         <button class="GFG"> Home </button> 
     	</a>
     </h3>
-	<h6>
-		<a href="all/adduserPage">
-        <button class="GFG"> Add User </button> 
+    <h6>
+     <a href="/muthu-news-agency-bill-payer/admin/user/all?page=1">
+        <button class="GFG"> Users </button> 
     	</a>
     </h6>
-    <form action="search/user">
-      <input type="text" placeholder="Search.." name="mob" required>
-      <button type="submit">Submit</button>
-    </form>
-    <form action="filter/filters">
-		<select name="params" multiple required>
-			<option value="PAID">PAID</option>
-			<option value="NOT-PAID">NOT-PAID</option>
-			<c:forEach var="region" items="${reg}">
-				<option value="${region}">${region}</option>
-			</c:forEach>
-		</select>
-		<button class="GFG"> Filter </button>
-		</form>
     <%
 		int count = 0;
 	%>
@@ -54,8 +40,6 @@
 			<th>Papers Availed</th>
 			<th>Amount</th>
 			<th>Status</th>
-			<th>Edit</th>
-			<th>Delete</th>
 		</tr>
 		<c:forEach var="user" items="${userlist}">
 			<tr>
@@ -66,8 +50,6 @@
 				<td>${user.papers}</td>
 				<td>${user.bill}</td>
 				<td>${user.status}</td>
-				<td><a href="all/editPage/${user.mob}">Edit</a></td>  
-				<td><a href="all/delPage/${user.mob}">Delete</a></td>
 			</tr>
 		</c:forEach>
 	</table>

@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h3>
-		<a href="/muthu-news-agency-bill-payer/admin/user/all">
+		<a href="/muthu-news-agency-bill-payer/admin/user/all?page=1">
 			<button class="GFG">User home</button>
 		</a>
 	</h3>
