@@ -3,7 +3,6 @@ package com.muthu.news.service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.muthu.news.Product;
 import com.muthu.news.User;
 import com.muthu.news.constants.MuthuConstants;
+import com.muthu.news.converter.CodeAndTamilLangHandler;
 import com.muthu.news.exception.CustomException;
 import com.muthu.news.mapper.UserRowMapper;
 
@@ -20,6 +20,8 @@ import com.muthu.news.mapper.UserRowMapper;
 public class UserServiceImpl implements UserService {
 
 	private static final Logger logger = Logger.getLogger(UserServiceImpl.class);
+	
+	private CodeAndTamilLangHandler handler = new CodeAndTamilLangHandler();
 
 	@Autowired
 	JdbcTemplate jdbcTemplate;
@@ -66,9 +68,15 @@ public class UserServiceImpl implements UserService {
 				queryBuilder.append("status ='"+each+"'");
 				queryBuilderForCount.append("status ='"+each+"'");
 			}
-			else {
-				queryBuilder.append("reg ='"+each+"'");
-				queryBuilderForCount.append("reg ='"+each+"'");
+			if(each.contains("FKUY")) {
+				String regFilter = handler.papWordReplacer(each.replace("FKUY", ""));
+				queryBuilder.append("reg ='"+handler.unicodeToTamil(regFilter)+"'");
+				queryBuilderForCount.append("reg ='"+handler.unicodeToTamil(regFilter)+"'");
+			}
+			if(each.contains("ZJXT")) {
+				String papFilter = handler.papWordReplacer(each.replace("ZJXT", ""));
+				queryBuilder.append("papers LIKE '%"+handler.unicodeToTamil(papFilter)+"%'");
+				queryBuilderForCount.append("papers LIKE '%"+handler.unicodeToTamil(papFilter)+"%'");
 			}
 			}
 			else {
@@ -79,15 +87,20 @@ public class UserServiceImpl implements UserService {
 					queryBuilder.append("status ='"+each+"'");
 					queryBuilderForCount.append("status ='"+each+"'");
 				}
-				else {
-					queryBuilder.append("reg ='"+each+"'");
-					queryBuilderForCount.append("reg ='"+each+"'");
+				if(each.contains("FKUY")) {
+					String regFilter = handler.papWordReplacer(each.replace("FKUY", ""));
+					queryBuilder.append("reg ='"+handler.unicodeToTamil(regFilter)+"'");
+					queryBuilderForCount.append("reg ='"+handler.unicodeToTamil(regFilter)+"'");
+				}
+				if(each.contains("ZJXT")) {
+					String papFilter = handler.papWordReplacer(each.replace("ZJXT", ""));
+					queryBuilder.append("papers LIKE '%"+handler.unicodeToTamil(papFilter)+"%'");
+					queryBuilderForCount.append("papers LIKE '%"+handler.unicodeToTamil(papFilter)+"%'");
 				}
 			}
 		}
 		queryBuilder.append(" LIMIT ? OFFSET ?");
-		//queryBuilderForCount.append(" LIMIT ? OFFSET ?");
-		logger.info("Fetching all the users for filter : "+filters.toString());
+		logger.info("Fetching all the users for filter : "+filters);
 		try {
 			allUsers = jdbcTemplate.query(queryBuilder.toString(), new Object[] {limit, offSet}, new UserRowMapper());
 			filteredUsersCount = jdbcTemplate.queryForObject(queryBuilderForCount.toString(), Integer.class);
@@ -170,9 +183,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Boolean updateUser(User user) throws CustomException {
+	public Boolean updateUser(User user, Boolean billDecider) throws CustomException {
 		List<Product> products = pService.getAll();
 		Boolean decider = false;
+		if(billDecider) {
+			
 		List<String> papersAvailedNow = new ArrayList<String>(
 				Arrays.asList(user.getPapers().replaceAll("\\s", "").split(",")));
 		Double updatedPrice = 0.00;
@@ -185,9 +200,11 @@ public class UserServiceImpl implements UserService {
 				}
 			}
 		}
+		user.setBill(updatedPrice);
+		}
 		try {
 			decider = jdbcTemplate.update(MuthuConstants.UPDATE_USER, new Object[] { user.getName(), user.getReg(),
-					user.getPapers(), updatedPrice, user.getStatus(), user.getMob() }) == 1;
+					user.getPapers(), user.getBill(), user.getStatus(), user.getMob() }) == 1;
 		} catch (Exception e) {
 			logger.error("ERROR occurred while updaing users.");
 			logger.error(e.getMessage());

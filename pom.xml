@@ -114,6 +114,6 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<finalName>muthu-news-agency-bill-payer</finalName>
+		<finalName>muthunewsagency</finalName>
 	</build>
 </project>

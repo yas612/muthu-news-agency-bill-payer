@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.muthu.news.Product;
 import com.muthu.news.constants.MuthuConstants;
+import com.muthu.news.converter.CodeAndTamilLangHandler;
 import com.muthu.news.exception.CustomException;
 import com.muthu.news.service.ProductService;
 
@@ -20,6 +21,8 @@ import com.muthu.news.service.ProductService;
 public class ProductController {
 	
 	private static final Logger logger = Logger.getLogger(ProductController.class);
+	
+	private CodeAndTamilLangHandler handler = new CodeAndTamilLangHandler();
 
 	@Autowired
 	private ProductService service;
@@ -29,6 +32,11 @@ public class ProductController {
 		ModelAndView mView = new ModelAndView();
 		mView.setViewName(MuthuConstants.PRODUCT_PAGE);
 		List<Product> productlist = service.getAll();
+		for(Product product : productlist) {
+			String Actualcode = product.getCode();
+			String convertedCode = handler.tamilToUnicode(Actualcode);
+			product.setCode(handler.backSlashReplacer(convertedCode));
+		}
 		if (productlist == null) {
 			mView.addObject(MuthuConstants.ERROR_MSG, MuthuConstants.ALL_PRODUCTS_FETCH_ERROR);
 			return mView;
@@ -103,16 +111,19 @@ public class ProductController {
 
 	@RequestMapping("/all/delPage/{code}")
 	public ModelAndView delProductPage(@PathVariable String code) {
-		Product product = service.getAProduct(code);
+		String replacedCode = handler.papWordReplacer(code);
+		Product product = service.getAProduct(handler.unicodeToTamil(replacedCode));
 		ModelAndView mView = new ModelAndView();
 		mView.addObject("code", product.getCode());
+		mView.addObject("name", product.getName());
 		mView.setViewName(MuthuConstants.DEL_PRODUCT_PAGE);
 		return mView;
 	}
 
 	@RequestMapping("/all/editPage/{code}")
 	public ModelAndView editUserPage(@PathVariable String code) {
-		Product product = service.getAProduct(code);
+		String replacedCode = handler.papWordReplacer(code);
+		Product product = service.getAProduct(handler.unicodeToTamil(replacedCode));
 		ModelAndView mView = new ModelAndView();
 		mView.addObject("product", product);
 		mView.setViewName(MuthuConstants.EDIT_PRODUCT_PAGE);

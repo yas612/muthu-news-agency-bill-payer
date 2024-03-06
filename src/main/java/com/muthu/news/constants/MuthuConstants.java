@@ -16,8 +16,8 @@ public class MuthuConstants {
 	public static final String USER_FETCH_ERROR = "ERROR occured while fetching users";
 	public static final String DEL_USER_SUCCESS_MSG = "User deletion action for user : %s  is SUCCESS";
 	public static final String DEL_USER_ERROR_MSG = "User deletion action for user : %s  is FAILED";
-	public static final String ADD_USER_SUCCESS_MSG = "User addition FAILED with info : %s is SUCCESS";
-	public static final String ADD_USER_ERROR_MSG = "User addition FAILED with info : %s is FAILED";
+	public static final String ADD_USER_SUCCESS_MSG = "User addition with info : %s is SUCCESS";
+	public static final String ADD_USER_ERROR_MSG = "User addition with info : %s is FAILED";
 	public static final String EDIT_USER_SUCCESS_MSG = "User edit action for user : %s  is SUCCESS";
 	public static final String EDIT_USER_ERROR_MSG = "User edit action for user : %s  is FAILED";
 	public static final String URL_APPEND = "/pay/verify/";
@@ -30,7 +30,7 @@ public class MuthuConstants {
 	public static final String EXPECTED_PAY_STATUS = "captured";
 	public static final String EMPTY_VALUE = "";
 	public static final String DATE_FORMAT = "dd-MM-yyyy hh:mm:ss";
-	public static final String SCHEDULE = "00 00 03 * * *";
+	public static final String SCHEDULE = "00 00 01 * * *";
 	public static final String ADMIN_ROLE = "ADMIN";
 	public static final String LOGIN_PAGE_EXCLUDE = "/loginpage";
 	public static final String LOGIN_PATH_EXCLUDE = "/login**";
@@ -107,7 +107,7 @@ public class MuthuConstants {
 	
 	//payment
 	public static final String GET_ALL_UNPAID_ORDERS = "SELECT * FROM \"payment\" WHERE status='NOT-PAID'";
-	public static final String NON_ELIGIBLE_ORDER = "UPDATE \"payment\" SET status='NOT-ELIGIBLE' WHERE orderid=?";
+	public static final String NON_ELIGIBLE_ORDER = "DELETE FROM \"payment\" WHERE orderid=?";
 	public static final String CREATE_PAY_RECORD = "INSERT INTO \"payment\" ( orderid, payid, mob, billmonth, "
 			+ "paymentdatetime, status) VALUES (?, ?, ?, ?, ?, 'NOT-PAID');";
 	public static final String UPDATE_PAY_RECORD = "UPDATE \"payment\" SET payid=?, mob=?, billmonth=?, "

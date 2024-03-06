@@ -43,6 +43,8 @@ public class MuthuNewsSecurityConfig {
 						.requestMatchers(new AntPathRequestMatcher("/resources/files/img**")).permitAll()
 						.requestMatchers(new AntPathRequestMatcher("/resources/files/img/loginpage.jpg")).permitAll()
 						.requestMatchers(new AntPathRequestMatcher("/resources/img/loginpage.jpg")).permitAll()
+						.requestMatchers(new AntPathRequestMatcher("/resources/files/img/logo.png")).permitAll()
+						.requestMatchers(new AntPathRequestMatcher("/resources/img/logo.png")).permitAll()
 						.requestMatchers(new AntPathRequestMatcher("/resources/img/**")).permitAll()
 						.requestMatchers(new AntPathRequestMatcher("/resources/img**")).permitAll()
 						.requestMatchers(new AntPathRequestMatcher("/img**")).permitAll()

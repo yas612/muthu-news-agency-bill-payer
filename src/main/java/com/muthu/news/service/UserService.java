@@ -14,7 +14,7 @@ public interface UserService {
 	public int getUsersCounts();
 	public User addUser(User user) throws CustomException;
 	public Boolean removeUser(String mob);
-	public Boolean updateUser(User user) throws CustomException;
+	public Boolean updateUser(User user, Boolean billDecider) throws CustomException;
 	public User getAUser(String mob);
 	public void updateStatus(String mob);
 	public String updateAllUserStatus();

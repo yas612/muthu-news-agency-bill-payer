@@ -1,6 +1,7 @@
 package com.muthu.news.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -18,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.muthu.news.Product;
 import com.muthu.news.User;
 import com.muthu.news.constants.MuthuConstants;
+import com.muthu.news.converter.CodeAndTamilLangHandler;
 import com.muthu.news.exception.CustomException;
 import com.muthu.news.service.ProductService;
 import com.muthu.news.service.UserService;
@@ -32,14 +34,17 @@ public class UserController {
 	@Autowired
 	private ProductService pService;
 
+	private CodeAndTamilLangHandler handler = new CodeAndTamilLangHandler();
+
 	@RequestMapping("/all")
 	public ModelAndView allUsers(HttpServletRequest request, @RequestParam String page) throws CustomException {
 		int recordsPerPage = 50;
 		int reqPage = Integer.parseInt(page);
-		
-		List<User> userlist = service.getAllUser(recordsPerPage, ((reqPage*recordsPerPage)-recordsPerPage));
+
+		List<User> userlist = service.getAllUser(recordsPerPage, ((reqPage * recordsPerPage) - recordsPerPage));
 
 		int noOfRecords = service.getUsersCounts();
+		List<Product> products = pService.getAll();
 
 		ModelAndView mView = new ModelAndView();
 		mView.setViewName(MuthuConstants.USERS_PAGE);
@@ -53,19 +58,20 @@ public class UserController {
 			mView.addObject("reg", reg);
 			request.setAttribute("currentPage", page);
 			mView.addObject("userlist", userlist);
+			mView.addObject("products", products);
 			return mView;
 		}
 
 	}
-	
+
 	@RequestMapping("/all/filter/{params}")
-	public ModelAndView allUsersByFilter(HttpServletRequest request, @RequestParam String page, @PathVariable String params) throws CustomException {
+	public ModelAndView allUsersByFilter(HttpServletRequest request, @RequestParam String page,
+			@PathVariable String params) throws CustomException {
 		int recordsPerPage = 50;
 		int reqPage = Integer.parseInt(page);
-		
-		List<User> userlist = service.getAllUserByFilter(recordsPerPage, ((reqPage*recordsPerPage)-recordsPerPage), params);
 
-		
+		List<User> userlist = service.getAllUserByFilter(recordsPerPage, ((reqPage * recordsPerPage) - recordsPerPage),
+				params);
 
 		ModelAndView mView = new ModelAndView();
 		mView.setViewName("users-filters");
@@ -73,9 +79,9 @@ public class UserController {
 			mView.addObject(MuthuConstants.ERROR_MSG, MuthuConstants.USER_FETCH_ERROR);
 			return mView;
 		} else {
-			int dummyVal = userlist.size()-1;
+			int dummyVal = userlist.size() - 1;
 			int noOfRecords = Integer.parseInt(userlist.get(dummyVal).getMob());
-			userlist.remove(userlist.size()-1);
+			userlist.remove(userlist.size() - 1);
 			Set<String> reg = service.getAllUser().stream().map(User::getReg).collect(Collectors.toSet());
 			int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
 			request.setAttribute("noOfPages", noOfPages);
@@ -85,39 +91,55 @@ public class UserController {
 		}
 
 	}
-	
+
 	@RequestMapping("/filter/filters")
-	public void buildPath(@RequestParam List<String> params, HttpServletRequest request, HttpServletResponse response) throws IOException {
+	public void buildPath(@RequestParam List<String> params, HttpServletRequest request, HttpServletResponse response)
+			throws IOException {
 		StringBuilder urlBuilder = new StringBuilder();
 		urlBuilder.append("/muthu-news-agency-bill-payer/admin/user/all/filter/");
-		if(params.size() == 1) {
-			urlBuilder.append(params.get(0));
-			urlBuilder.append("filter?page=1");
-		}
-		else {
-			int lastindex = params.size()-1;
-			String lastElement = params.get(lastindex);
-		for(String url : params) {
-			urlBuilder.append(url);
-			if(!(url.equalsIgnoreCase(lastElement))) {
-			urlBuilder.append("filter");
+		List<String> encodedParams = new ArrayList<String>();
+		for (String param : params) {
+			if (!(param.contains("PAID"))) {
+				if (param.contains("ZJXT")) {
+					String toReplace = param.replaceAll("ZJXT", "");
+					String code = handler.tamilToUnicode(toReplace);
+					encodedParams.add(handler.backSlashReplacer(code).concat("ZJXT"));
+				}
+				if (param.contains("FKUY")) {
+					String toReplace = param.replaceAll("FKUY", "");
+					String code = handler.tamilToUnicode(toReplace);
+					encodedParams.add(handler.backSlashReplacer(code).concat("FKUY"));
+				}
+			} else {
+				encodedParams.add(param);
 			}
 		}
-		urlBuilder.append("?page=1");
+		if (encodedParams.size() == 1) {
+			urlBuilder.append(encodedParams.get(0));
+			urlBuilder.append("filter?page=1");
+		} else {
+			int lastindex = encodedParams.size() - 1;
+			String lastElement = encodedParams.get(lastindex);
+			for (String url : encodedParams) {
+				urlBuilder.append(url);
+				if (!(url.equalsIgnoreCase(lastElement))) {
+					urlBuilder.append("filter");
+				}
+			}
+			urlBuilder.append("?page=1");
 		}
 		response.sendRedirect(urlBuilder.toString());
 	}
-	
+
 	@RequestMapping("search/user")
 	public ModelAndView searchAUser(@RequestParam String mob) {
 		User user = service.getAUser(mob);
 		ModelAndView mView = new ModelAndView();
 		mView.setViewName("user-search");
-		if(user == null) {
+		if (user == null) {
 			mView.addObject("errorMsg", "User not exist");
 			return mView;
-		}
-		else {
+		} else {
 			mView.addObject("user", user);
 			return mView;
 		}
@@ -136,17 +158,25 @@ public class UserController {
 
 	@RequestMapping("/all/editPage/edituser")
 	public ModelAndView editUser(@RequestParam String mob, @RequestParam String name, @RequestParam String reg,
-			@RequestParam String updatedPapers, @RequestParam Double bill) throws CustomException {
+			@RequestParam(required = false) String updatedPapers, @RequestParam Double bill, @RequestParam String status, 
+			@RequestParam String papers) throws CustomException {
+		Boolean billDecider = false;
 		User user = new User();
+		if(updatedPapers == null || updatedPapers.isBlank()) {
+			user.setPapers(papers);
+		}
+		else {
+			user.setPapers(updatedPapers);
+			billDecider = true;
+		}
 		user.setMob(mob);
 		user.setName(name);
 		user.setReg(reg);
-		user.setPapers(updatedPapers);
 		user.setBill(bill);
-		user.setStatus(MuthuConstants.NOT_PAID);
+		user.setStatus(status);
 		ModelAndView mView = new ModelAndView();
 		mView.setViewName(MuthuConstants.EDIT_USER_PAGE);
-		Boolean decider = service.updateUser(user);
+		Boolean decider = service.updateUser(user, billDecider);
 		if (decider) {
 			mView.addObject(MuthuConstants.ERROR_MSG,
 					String.format(MuthuConstants.EDIT_USER_SUCCESS_MSG, user.toString()));

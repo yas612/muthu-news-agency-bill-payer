@@ -87,6 +87,7 @@ public class PaymentServiceImpl implements PaymentService {
 		JSONObject orderRes = new JSONObject();
 		String reqURL = request.getRequestURL().toString();
 		String finURL = reqURL.replace(request.getServletPath(), "") + MuthuConstants.URL_APPEND;
+		String imgUrl = reqURL.replace(request.getServletPath(), "") + "/resources/img/logo.png";
 		try {
 			razorpay = new RazorpayClient(manager.getKey(), manager.getSecret());
 
@@ -104,6 +105,7 @@ public class PaymentServiceImpl implements PaymentService {
 			orderRes.put(MuthuConstants.REQ_ORDER_ID, order.get(MuthuConstants.ID).toString());
 			orderRes.put(MuthuConstants.RZ_ID, manager.getKey());
 			orderRes.put(MuthuConstants.CALLBACK_URL, finURL);
+			orderRes.put("imgUrl", imgUrl);
 
 			createPayRec(order.get(MuthuConstants.ID).toString());
 
@@ -184,6 +186,10 @@ public class PaymentServiceImpl implements PaymentService {
 								logger.error("Payment object retrieved is NULL");
 							}
 						}
+					}
+					else {
+						template.update(MuthuConstants.NON_ELIGIBLE_ORDER,
+								new Object[] { payment.getOrderid() });
 					}
 				}
 			}

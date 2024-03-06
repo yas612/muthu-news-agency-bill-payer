@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.muthu.news.Product;
 import com.muthu.news.User;
 import com.muthu.news.constants.MuthuConstants;
+import com.muthu.news.converter.CodeAndTamilLangHandler;
 import com.muthu.news.exception.CustomException;
 import com.muthu.news.mapper.ProductRowMapper;
 import com.muthu.news.mapper.UserRowMapper;
@@ -18,6 +19,8 @@ import com.muthu.news.mapper.UserRowMapper;
 public class ProductServiceImpl implements ProductService {
 
 	private static final Logger logger = Logger.getLogger(ProductServiceImpl.class);
+	
+	private CodeAndTamilLangHandler handler = new CodeAndTamilLangHandler();
 
 	@Autowired
 	JdbcTemplate jdbcTemplate;
@@ -25,23 +28,24 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<Product> getAll() throws CustomException {
 		logger.info("Fetching all Papers");
-		List<Product> product = null;
+		List<Product> products = null;
 		try {
-			product = jdbcTemplate.query(MuthuConstants.GET_ALL_PRODUCT, new ProductRowMapper());
+			products = jdbcTemplate.query(MuthuConstants.GET_ALL_PRODUCT, new ProductRowMapper());
 		} catch (Exception e) {
 			logger.error("ERROR occurred while fetching all papers.");
 			logger.error(e.getMessage());
 		}
-		if (product == null) {
+		if (products == null) {
 			logger.error("Fetched 0 papers.");
 			return null;
 		}
-		logger.info("Fetched papers count : " + product.size());
-		return product;
+		logger.info("Fetched papers count : " + products.size());
+		return products;
 	}
 
 	@Override
 	public Product addProduct(Product product) {
+		//String encodedCode = handler.tamilToUnicode(product.getCode());
 		try {
 			logger.info("Adding NEW paper with details : " + product.toString());
 			jdbcTemplate.update(MuthuConstants.ADD_PRODUCT,
