@@ -1,53 +1,66 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" isELIgnored="false"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
 <title>Muthu News Agency</title>
-<link href="${pageContext.request.contextPath}/resources/css/userinfo.css" rel="stylesheet" >
+<link href="${pageContext.request.contextPath}/resources/css/user-search.css" rel="stylesheet" >
 </head>
 <body>
+<%@ include file="header.jsp" %> 
 <div class="container">
-	<h2>Cutomer Details</h2>
+<h3>
+		<a href="/muthu-news-agency-bill-payer/admin/user/all?page=1">
+			<button class="GFG">பயனர் முகப்பு பக்கம்</button>
+		</a>
+	</h3>
+	<h2>வாடிக்கையாளர் விவரங்கள்</h2>
 	<div class="table-container">
 	<p>${errorMsg}</p>
 	<table>
 		<tr>
-			<th>Name</th>
+			<th>பெயர்</th>
 			<td>${user.name}</td>
 		</tr>
 		<tr>
-			<th>Mobile Number</th>
+			<th>கைபேசி எண்</th>
 			<td>${user.mob}</td>
 		</tr>
 		<tr>
-			<th>Papers Availed</th>
+			<th>செய்தி தாள்கள்</th>
 			<td>${user.papers}</td>
 		</tr>
 		<tr>
-			<th>Papers Availed</th>
+			<th>பகுதி</th>
 			<td>${user.reg}</td>
 		</tr>
 		<tr>
-			<th>Bill</th>
+			<th>பில் மதிப்பு</th>
 			<td>${user.bill}</td>
 		</tr>
 		<tr>
-			<th>Payment Status</th>
+			<th>பில் நிலை</th>
 			<td>${user.status}</td>
 		</tr>
 		<tr>
-			<th>Edit</th>
-			<td><a href="/muthu-news-agency-bill-payer/admin/user/all/editPage/${user.mob}">Edit</a></td>
+			<th>மாற்று</th>
+			  <td>
+				<a href="/muthu-news-agency-bill-payer/admin/user/all/editPage/${user.mob}">
+       				 <button class="GFG"> மாற்று </button> 
+    			</a>
+    		   </td>
 		</tr>
 		<tr>
-			<th>Delete</th>
-			<td><a href="/muthu-news-agency-bill-payer/admin/user/all/delPage/${user.mob}">Delete</a></td>
+			<th>அகற்று</th>
+			<td>
+				<a href="/muthu-news-agency-bill-payer/admin/user/all/delPage/${user.mob}">
+       				 <button class="GFG"> அகற்று </button> 
+    			</a>
+    		 </td>
 		</tr>
 	</table>
 	</div>
 	</div>
+	<%@ include file="footer.jsp" %> 
 </body>
 </html>

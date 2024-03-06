@@ -1,23 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" isELIgnored="false"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
 <title>Muthu News Agency</title>
+<%@ include file="header.jsp" %> 
 <link href="${pageContext.request.contextPath}/resources/css/users.css" rel="stylesheet" >
 </head>
 <body>
 <div class="container">
-	<h3>
-		<a href="/muthu-news-agency-bill-payer/admin">
-        <button class="GFG"> Home </button> 
-    	</a>
-    </h3>
     <h6>
      <a href="/muthu-news-agency-bill-payer/admin/user/all?page=1">
-        <button class="GFG"> Users </button> 
+        <button class="GFG"> பயனர் முகப்பு பக்கம் </button> 
     	</a>
     </h6>
     <%
@@ -56,7 +50,10 @@
 	<%--For displaying Previous link except for the 1st page --%>
     <c:if test="${currentPage != 1}">
     	<span hidden="hidden">${count = count + 50}</span>
-        <td><a href="?page=${currentPage - 1}">Previous</a></td>
+        <td><a href="?page=${currentPage - 1}">
+        	<button class="GFG"> Previous </button> 
+    		</a>
+    	</td>
     </c:if>
  
     <%--For displaying Page numbers. 
@@ -78,9 +75,13 @@
      
     <%--For displaying Next link --%>
     <c:if test="${currentPage lt noOfPages}">
-        <td><a href="?page=${currentPage + 1}">Next</a></td>
+        <td><a href="?page=${currentPage + 1}">
+        	<button class="GFG"> Next </button> 
+    		</a>
+    	</td>
     </c:if>
 	</div>	
 	</div>
+	<%@ include file="footer.jsp" %> 
 </body>
 </html>

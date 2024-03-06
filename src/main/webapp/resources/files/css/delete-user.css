@@ -1,0 +1,107 @@
+@charset "ISO-8859-1";
+
+body{
+	padding: 0;
+	margin: 0;
+}
+
+input {
+    display: block;
+    border: 2px solid black;
+}
+
+label {
+    margin-bottom: 15px;
+}
+
+.container {
+	background-color: #a7d9e7;
+	background-size: cover;
+	background-position: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	color: white;
+	height: 70vh;
+}
+
+.form-container{
+	height: 30vh;
+	width: 60vw;
+	border-radius: 5px;
+	background-color: white;
+	justify-content: left;
+	align-items: left;
+	text-align: left;
+	color: black;
+	padding: 5vh 0vh 0vh 5vh;
+}
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+	
+.container{
+	height: 88vh;
+}	
+.form-container{
+	width: 80vw;
+	font-size: 30px;
+	padding: 5vh 0vh 0vh 2vh;
+}
+input{
+	font-size: 30px;
+	height: 3vh;
+	width: 60vw;
+}
+#submit{
+	width: 20vw;
+}
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) {
+.container{
+	height: 80vh;
+}	
+.form-container{
+	height: 40vh;
+	width: 60vw;
+	font-size: 30px;
+	padding: 5vh 0vh 0vh 2vh;
+}
+input{
+	font-size: 30px;
+	height: 3vh;
+	width: 40vw;
+}
+#submit{
+	width: 20vw;
+	height: 5vh;
+}
+}
+
+/* Desktops and laptops ----------- */
+@media only screen 
+and (min-width : 1224px) {
+.container{
+ 	height: 60vh; 
+ }
+ .form-container{
+ 	height: 25vh;
+ 	width: 30vw;
+ }
+}
+
+/* Large screens ----------- */
+@media only screen 
+and (min-width : 1824px) {
+.container{
+ 	height: 88vh;
+ }
+}

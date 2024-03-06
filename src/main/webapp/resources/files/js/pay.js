@@ -6,15 +6,17 @@ var amount;
 var orderId;
 var rzid;
 var callBackUrl;
+var imgurl;
 
 function createOrderId(reqamount, mob, url) {
-	x.open("GET", url+reqamount, false);
+	x.open("GET", url + reqamount, false);
 	x.send();
 	jobj = x.responseText;
 	res = JSON.parse(jobj);
 	orderId = res.orderId;
 	amount = res.amount;
 	rzid = res.rzid;
+	imgurl = res.imgUrl;
 	callBackUrl = res.callBackUrl;
 	openCheckout(mob);
 }
@@ -26,21 +28,42 @@ function openCheckout(mob) {
 		"currency": "INR",
 		"name": "Muthu News Agency",
 		"description": "Trusted company over years.",
-		"image": "https://example.com/your_logo",
+		"image": imgurl,
 		"order_id": orderId,
-		"callback_url": callBackUrl+mob,
-		"prefill": { 
+		"callback_url": callBackUrl + mob,
+		"prefill": {
 			"name": "",
 			"email": "",
 			"contact": mob
 		},
-		"notes": {
-			"address": "Y.Othakadai, Madurai - 625107, Tamil Nadu, India."
-		},
-		"theme": {
-			"color": "#3399cc"
-		}
-	};
+	config: {
+    display: {
+      blocks: {
+        banks: {
+          name: 'All payment methods',
+          instruments: [
+            {
+              method: 'upi'
+            },
+            {
+              method: 'card'
+            },
+            {
+                method: 'wallet'
+            },
+            {
+                method: 'netbanking'
+            }
+          ],
+        },
+      },
+      sequence: ['block.banks'],
+      preferences: {
+        show_default_blocks: false,
+      },
+    },
+  },
+};
 	var rzp1 = new Razorpay(options);
 	document.getElementById('rzp-button1').onclick = function(e) {
 		rzp1.open();

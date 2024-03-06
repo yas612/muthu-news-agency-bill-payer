@@ -1,25 +1,27 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" isELIgnored="false"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
 <title>Muthu News Agency</title>
+<link href="${pageContext.request.contextPath}/resources/css/delete-user.css" rel="stylesheet" >
 </head>
 <body>
+<%@ include file="header.jsp" %> 
+<div class="container">
 <h3>
 		<a href="/muthu-news-agency-bill-payer/admin/user/all?page=1">
-			<button class="GFG">User home</button>
+			<button class="GFG">பயனர் முகப்பு பக்கம்</button>
 		</a>
 	</h3>
+	<p>${errorMsg}</p>
  <div>
- <form action="deluser">
- 	<label for="Mobile Number">Mobile Number</label>
+ <form class ="form-container" action="deluser">
+ 	<label for="Mobile Number">கைபேசி எண்</label>
  	<input type="text" name="mob" value="${mob}" required readonly/><br>
- 	<input type="submit" value="DELETE"/>
+ 	<input type="submit" id="submit" value="அகற்று"/>
  </form>
- 
-  <p>${errorMsg}</p>
+  </div>
 </div>
+  <%@ include file="footer.jsp" %> 
 </body>
 </html>

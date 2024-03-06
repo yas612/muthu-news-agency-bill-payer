@@ -1,0 +1,191 @@
+@charset "ISO-8859-1";
+
+body {
+	padding: 0;
+	margin: 0;
+}
+
+input {
+    display: block;
+    border: 2px solid black;
+    margin-bottom: 5vh;
+    width: 60vw;
+    height: 2vh;
+    font-size: 40px;
+}
+
+select{
+	margin-bottom: 5vh;
+	width: 20vw;
+    height: 6vh;
+    font-size: 30px;
+}
+
+#submit{
+	width: 30vw;
+	height: 3vh;
+}
+
+#user-main{
+	font-size: 20px;
+}
+
+.container {
+	background-color: #a7d9e7;
+	background-size: cover;
+	background-position: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	color: white;
+	height: 80vh;
+}
+
+.form-container{
+	padding: 10px 30px 0px 20px;
+	border-radius: 5px;
+	background-color: white;
+	justify-content: left;
+	align-items: left;
+	text-align: left;
+	color: black;
+	font-size: 35px;
+	font-weight: bold;
+	width: 80vw;
+}
+
+form{
+	width: 60vw;
+}
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+.container{
+ 	min-height: 86vh;
+ 	max-height: 200vh; 
+ }
+ 
+ form{
+ 	height: 70vh;
+ }
+ select{
+ 	width: 60vw;
+ 	height: 9vh;
+ }
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) {
+.container{
+ 	height: 80vh;
+ }
+ 
+ .form-container{
+ 	height: 65vh; 
+ 	width: 80vw;
+ }
+ 
+input {
+    font-size: 28px;
+    margin-bottom: 0vh;
+     height: 2.5vh;
+}
+
+select{
+    font-size: 28px;
+    height: 8vh;
+}
+
+#submit{
+	width: 30vw;
+	height: 5vh;
+}
+
+#user-main{
+	font-size: 20px;
+}
+
+}
+
+/* Desktops and laptops ----------- */
+@media only screen 
+and (min-width : 1224px) {
+.container{
+ 	height: 62vh;
+ }
+ 
+ .form-container{
+ 	height: 47vh; 
+ 	width: 40vw;
+ 	font-size: 9px;
+ }
+ 
+input {
+    font-size: 9px;
+    margin-bottom: 0.4vh;
+     height: 1.6vh;
+     width: 25vw;
+}
+
+select{
+    font-size: 9px;
+    height: 5vh;
+    width: 10vw;
+}
+
+#submit{
+	width: 10vw;
+	height: 5vh;
+	font-size: 9px;
+}
+
+#user-main{
+	font-size: 10px;
+}
+}
+
+/* Large screens ----------- */
+@media only screen 
+and (min-width : 1824px) {
+.container{
+ 	height: 62vh;
+ }
+ 
+ .form-container{
+ 	height: 47vh; 
+ 	width: 40vw;
+ 	font-size: 9px;
+ }
+ 
+input {
+    font-size: 9px;
+    margin-bottom: 0.4vh;
+     height: 1.6vh;
+     width: 25vw;
+}
+
+select{
+    font-size: 9px;
+    height: 5vh;
+    width: 10vw;
+}
+
+#submit{
+	width: 10vw;
+	height: 5vh;
+	font-size: 9px;
+}
+
+#user-main{
+	font-size: 10px;
+}
+
+}
+
+

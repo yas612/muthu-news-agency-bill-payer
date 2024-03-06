@@ -1,40 +1,49 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" isELIgnored="false"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
 <title>Muthu News Agency</title>
+<link href="${pageContext.request.contextPath}/resources/css/products.css" rel="stylesheet" >
 </head>
 <body>
+<%@ include file="header.jsp" %> 
+<div class="container">
 	<h3>
 		<a href="/muthu-news-agency-bill-payer/admin">
-        <button class="GFG"> Home </button> 
+        <button class="GFG"> முகப்பு பக்கம் </button> 
     	</a>
     </h3>
 	<h6>
 		<a href="all/addproductPage">
-        <button class="GFG"> Add Paper </button> 
+        <button class="GFG"> புதிய செய்தித்தாள் சேர்க்க </button> 
     	</a>
     </h6>
+    	<p> ${erroMsg}</p>
 	<table>
 		<tr>
-			<th>Product Code</th>
-			<th>Product Name</th>
-			<th>Product Price</th>
+			<th>செய்தித்தாள் பெயர்</th>
+			<th>செய்தித்தாள் விலை</th>
+			<th>மாற்று</th>
+			<th>அகற்று</th>
 		</tr>
 		<c:forEach var="product" items="${productlist}">
 			<tr>
-				<td>${product.code}</td>
 				<td>${product.name}</td>
 				<td>${product.price}</td>
-				<td><a href="all/editPage/${product.code}">Edit</a></td>  
-				<td><a href="all/delPage/${product.code}">Delete</a></td>
+				<td>
+				<a href="all/editPage/${product.code}">
+        			<button class="GFG"> மாற்று </button> 
+    				</a>
+    			</td>
+    			<td><a href="all/delPage/${product.code}">
+        			<button class="GFG"> அகற்று </button> 
+    				</a>
+    			</td>
 			</tr>
 		</c:forEach>
 	</table>
-	
-	<h1> ${erroMsg}</h1>
+	</div>
+	<%@ include file="footer.jsp" %> 
 </body>
 </html>

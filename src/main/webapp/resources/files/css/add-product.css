@@ -1,0 +1,182 @@
+@charset "ISO-8859-1";
+
+body{
+	margin: 0;
+	padding: 0;
+}
+input {
+    display: block;
+    border: 2px solid black;
+}
+
+label {
+    margin-bottom: 15px;
+}
+
+form{
+	margin-top: 0px;
+}
+
+.container {
+	background-color: #a7d9e7;
+	background-size: cover;
+	background-position: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	color: white;
+	height: 80vh;
+}
+
+.form-container{
+	height: 50%;
+	border-radius: 5px;
+	background-color: white;
+	justify-content: left;
+	align-items: left;
+	text-align: left;
+	color: black;
+}
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+.container{
+ 	height: 88vh;
+ }
+ 
+ .form-container{
+ 	height: 50vh; 
+ 	width: 80vw;
+ 	font-size: 19px;
+ }
+ 
+ form{
+ 	margin-top: 2vh;
+ 	margin-left: 2vw;
+ }
+ 
+ input{
+ 	font-size: 28px;
+ 	width: 60vw;
+ 	height: 2.2vh;
+ 	margin-bottom: 7vh;
+ }
+ 
+ label{
+ 	font-size: 28px;
+ }
+ 
+ #submit{
+ 	width: 15vw;
+ 	font-size: 12px;
+ }
+
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) {
+.container{
+ 	height: 79vh;
+ }
+ 
+ .form-container{
+ 	height: 60vh; 
+ 	width: 80vw;
+ 	font-size: 19px;
+ }
+ 
+ form{
+ 	margin-top: 2vh;
+ 	margin-left: 2vw;
+ }
+ 
+ input{
+ 	font-size: 28px;
+ 	width: 60vw;
+ 	height: 3.6vh;
+ 	margin-bottom: 7vh;
+ }
+ 
+ label{
+ 	font-size: 28px;
+ }
+ 
+ #submit{
+ 	width: 15vw;
+ 	font-size: 12px;
+ }
+
+}
+/* Desktops and laptops ----------- */
+@media only screen 
+and (min-width : 1224px) {
+.container{
+ 	height: 61vh;
+ }
+ 
+ .form-container{
+ 	height: 40vh; 
+ 	width: 35vw;
+ 	font-size: 9px;
+ }
+ 
+ form{
+ 	margin-top: 1vh;
+ 	margin-left: 1vw;
+ }
+ 
+ input{
+ 	font-size: 18px;
+ 	width: 25vw;
+ }
+ 
+ label{
+ 	font-size: 18px;
+ }
+ 
+ #submit{
+ 	width: 10vw;
+ 	font-size: 12px;
+ }
+
+}
+
+/* Large screens ----------- */
+@media only screen 
+and (min-width : 1824px) {
+.container{
+ 	height: 61vh;
+ }
+ 
+ .form-container{
+ 	height: 40vh; 
+ 	width: 35vw;
+ 	font-size: 9px;
+ }
+ 
+ form{
+ 	margin-top: 1vh;
+ 	margin-left: 1vw;
+ }
+ 
+ input{
+ 	font-size: 18px;
+ 	width: 25vw;
+ }
+ 
+ label{
+ 	font-size: 18px;
+ }
+ 
+ #submit{
+ 	width: 10vw;
+ 	font-size: 12px;
+ }
+
+}
