@@ -1,8 +1,8 @@
 @charset "ISO-8859-1";
 
 body {
-	margin: 0;
 	padding: 0;
+	margin: 0;
 }
 
 .container {
@@ -18,12 +18,29 @@ body {
 	height: 80vh;
 }
 
-span {
-	display: block;
-	margin-bottom: 10px;
+.pay-container {
+	background-color: white;
+	color: black;
+	font-size: 20px;
+	width: 40vw;
+	height: 40vh;
+	border-radius: 5px;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
 }
 
-.GFG {
+#pay-tick {
+	font-size: 120px;
+	margin-bottom: 0px;
+	margin-top: 10px;
+}
+
+#pay-suc {
+	margin-top: 0px;
+}
+
+#main-page {
 	background-color: #00478e;
 	color: white;
 }
@@ -34,17 +51,20 @@ span {
 	.container {
 		height: 88vh;
 	}
+	.pay-container {
+		height: 30vh;
+		width: 70vw;
+	}
+	#pay-tick {
+		font-size: 400px;
+		margin-bottom: 0px;
+		margin-top: 3vh;
+	}
+	#pay-suc {
+		font-size: 50px;
+	}
 	button {
-		font-size: 25px;
-	}
-	h3 {
 		font-size: 35px;
-	}
-	span {
-		margin-bottom: 3vh;
-	}
-	p {
-		font-size: 25px;
 	}
 }
 
@@ -54,26 +74,36 @@ span {
 	.container {
 		height: 80vh;
 	}
-	button {
-		font-size: 25px;
+	.pay-container {
+		height: 20vh;
+		width: 70vw;
 	}
-	h3 {
-		font-size: 35px;
+	#pay-tick {
+		font-size: 250px;
+		margin-bottom: 0px;
+		margin-top: 3vh;
 	}
-	span {
-		margin-bottom: 3vh;
+	#pay-suc {
+		font-size: 50px;
 	}
 }
+
 /* Desktops and laptops ----------- */
 @media only screen and (min-width : 1224px) {
 	.container {
-		height: 62vh;
+		height: 65vh;
+	}
+	.pay-container {
+		height: 40vh;
 	}
 }
 
 /* Large screens ----------- */
 @media only screen and (min-width : 1824px) {
 	.container {
-		height: 62vh;
+		height: 65vh;
+	}
+	.pay-container {
+		height: 40vh;
 	}
 }

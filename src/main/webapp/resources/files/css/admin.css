@@ -1,17 +1,24 @@
 @charset "ISO-8859-1";
 
-body{
+body {
 	margin: 0;
 	padding: 0;
 }
 
 span {
-    display: block;
-    margin-bottom: 10px;
+	display: block;
+	margin-bottom: 10px;
+	margin-top: 3vh;
+}
+
+.GFG {
+	margin-top: 3vh;
+	background-color: #00478e;
+	color: white;
 }
 
 .container {
-	background-color: #a7d9e7;
+	background-color: white;
 	background-size: cover;
 	background-position: center;
 	display: flex;
@@ -24,62 +31,53 @@ span {
 	height: 70vh;
 }
 
+h3 {
+	color: #00478e;
+}
 
 /* Smartphones (portrait and landscape) ----------- */
-@media only screen 
-and (min-device-width : 320px) 
-and (max-device-width : 480px) {
-.container{
- 	height: 88vh;
- }
- 
- button{
- 	font-size: 25px; 
- }
- 
- h3{
- 	font-size: 35px;
- }
- 
- span{
- 	margin-bottom: 3vh;
- }
-
+@media only screen and (min-device-width : 320px) and (max-device-width
+	: 480px) {
+	.container {
+		height: 88vh;
+	}
+	button {
+		font-size: 25px;
+	}
+	h3 {
+		font-size: 35px;
+	}
+	span {
+		margin-bottom: 3vh;
+	}
 }
 
 /* iPads (portrait and landscape) ----------- */
-@media only screen 
-and (min-device-width : 768px) 
-and (max-device-width : 1024px) {
-.container{
- 	height: 80vh;
- }
- 
- button{
- 	font-size: 25px; 
- }
- 
- h3{
- 	font-size: 35px;
- }
- 
- span{
- 	margin-bottom: 3vh;
- }
-
+@media only screen and (min-device-width : 768px) and (max-device-width
+	: 1024px) {
+	.container {
+		height: 80vh;
+	}
+	button {
+		font-size: 25px;
+	}
+	h3 {
+		font-size: 35px;
+	}
+	span {
+		margin-bottom: 3vh;
+	}
 }
 /* Desktops and laptops ----------- */
-@media only screen 
-and (min-width : 1224px) {
-.container{
- 	height: 62vh;
- }
+@media only screen and (min-width : 1224px) {
+	.container {
+		height: 62vh;
+	}
 }
 
 /* Large screens ----------- */
-@media only screen 
-and (min-width : 1824px) {
-.container{
- 	height: 62vh;
- }
+@media only screen and (min-width : 1824px) {
+	.container {
+		height: 62vh;
+	}
 }

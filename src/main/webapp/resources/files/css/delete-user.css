@@ -1,21 +1,27 @@
 @charset "ISO-8859-1";
 
-body{
+body {
 	padding: 0;
 	margin: 0;
 }
 
 input {
-    display: block;
-    border: 2px solid black;
+	display: block;
+	border: 2px solid black;
 }
 
 label {
-    margin-bottom: 15px;
+	margin-bottom: 15px;
+}
+
+.GFG {
+	background-color: #00478e;
+	color: white;
+	font-size: 25px;
 }
 
 .container {
-	background-color: #a7d9e7;
+	background-color: white;
 	background-size: cover;
 	background-position: center;
 	display: flex;
@@ -27,81 +33,90 @@ label {
 	height: 70vh;
 }
 
-.form-container{
+.form-container {
 	height: 30vh;
 	width: 60vw;
 	border-radius: 5px;
-	background-color: white;
+	background-color: #00478e;
 	justify-content: left;
 	align-items: left;
 	text-align: left;
-	color: black;
+	color: white;
 	padding: 5vh 0vh 0vh 5vh;
 }
 
 /* Smartphones (portrait and landscape) ----------- */
-@media only screen 
-and (min-device-width : 320px) 
-and (max-device-width : 480px) {
-	
-.container{
-	height: 88vh;
-}	
-.form-container{
-	width: 80vw;
-	font-size: 30px;
-	padding: 5vh 0vh 0vh 2vh;
-}
-input{
-	font-size: 30px;
-	height: 3vh;
-	width: 60vw;
-}
-#submit{
-	width: 20vw;
-}
+@media only screen and (min-device-width : 320px) and (max-device-width
+	: 480px) {
+	.container {
+		height: 88vh;
+	}
+	.form-container {
+		height: 15vh;
+		width: 80vw;
+		font-size: 30px;
+		padding: 5vh 0vh 0vh 2vh;
+	}
+	input {
+		font-size: 40px;
+		height: 3vh;
+		width: 60vw;
+	}
+	label {
+		font-size: 40px;
+	}
+	#submit {
+		width: 20vw;
+	}
 }
 
 /* iPads (portrait and landscape) ----------- */
-@media only screen 
-and (min-device-width : 768px) 
-and (max-device-width : 1024px) {
-.container{
-	height: 80vh;
-}	
-.form-container{
-	height: 40vh;
-	width: 60vw;
-	font-size: 30px;
-	padding: 5vh 0vh 0vh 2vh;
-}
-input{
-	font-size: 30px;
-	height: 3vh;
-	width: 40vw;
-}
-#submit{
-	width: 20vw;
-	height: 5vh;
-}
+@media only screen and (min-device-width : 768px) and (max-device-width
+	: 1024px) {
+	.container {
+		height: 80vh;
+	}
+	.form-container {
+		height: 20vh;
+		width: 60vw;
+		font-size: 30px;
+		padding: 5vh 0vh 0vh 2vh;
+	}
+	input {
+		font-size: 30px;
+		height: 3vh;
+		width: 40vw;
+	}
+	#submit {
+		width: 20vw;
+		height: 5vh;
+	}
 }
 
 /* Desktops and laptops ----------- */
-@media only screen 
-and (min-width : 1224px) {
-.container{
- 	height: 60vh; 
- }
- .form-container{
- 	height: 25vh;
- 	width: 30vw;
- }
+@media only screen and (min-width : 1224px) {
+	.container {
+		height: 62vh;
+	}
+	.form-container {
+		height: 25vh;
+		width: 30vw;
+	}
+	.GFG {
+		font-size: 15px;
+	}
 }
 
 /* Large screens ----------- */
-@media only screen 
-and (min-width : 1824px) {
-.container{
- 	height: 88vh;
- }
+@media only screen and (min-width : 1824px) {
+	.container {
+		height: 62vh;
+	}
+	.form-container {
+		height: 25vh;
+		width: 30vw;
+	}
+	.GFG {
+		font-size: 15px;
+	}
 }

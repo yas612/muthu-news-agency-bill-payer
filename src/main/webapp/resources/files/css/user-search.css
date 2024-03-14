@@ -1,6 +1,6 @@
 @charset "ISO-8859-1";
 
-button{
+button {
 	background-color: #00509f;
 	font-weight: 1000px;
 	font-size: 15px;
@@ -13,7 +13,7 @@ body {
 }
 
 .container {
-	background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+	background-image: white;
 	background-size: cover;
 	background-position: center;
 	display: flex;
@@ -21,12 +21,12 @@ body {
 	justify-content: center;
 	align-items: center;
 	text-align: center;
-	color: black;
+	color: white;
 	min-height: 70vh;
 	width: 100%;
 }
 
-.form-container{
+.form-container {
 	width: 40vw;
 	border-radius: 5px;
 	background-color: white;
@@ -36,101 +36,103 @@ body {
 	color: black;
 }
 
+h3 {
+	color: #00509f;
+}
+
 input {
-    display: block;
-    size: 50vw;
+	display: block;
+	size: 50vw;
 }
 
 label {
-    margin-bottom: 10px;
+	margin-bottom: 10px;
 }
 
-.submit-btn{
+.submit-btn {
 	justify-content: center;
 	align-items: center;
 }
 
-table{
-	background-color: white;
-	border: 1px solid black;
+table {
+	background-color: #00509f;
+	border: 1px solid white;
 	width: 80vw;
 }
 
-th, td{
-	border: 1px solid black;
+th, td {
+	border: 1px solid white;
 	width: 35vw;
 }
 
-td{
+td {
 	word-wrap: break-word;
 }
 
 /* Smartphones (portrait and landscape) ----------- */
-@media only screen 
-and (min-device-width : 320px) 
-and (max-device-width : 480px) {
-.container{
- 	min-height: 86vh;
- 	max-height: 200vh; 
- }
- table{
- 	height: 60vh;
- 	width: 80vw;
- }
- th,td {
-	font-weight: bold;
-	font-size: 30px;
-	max-width: 40vw;
-}
+@media only screen and (min-device-width : 320px) and (max-device-width
+	: 480px) {
+	.container {
+		min-height: 88vh;
+		max-height: 200vh;
+	}
+	table {
+		height: 60vh;
+		width: 80vw;
+		margin-bottom: 3vh;
+	}
+	th, td {
+		font-weight: bold;
+		font-size: 30px;
+		max-width: 40vw;
+	}
 }
 
 /* iPads (portrait and landscape) ----------- */
-@media only screen 
-and (min-device-width : 768px) 
-and (max-device-width : 1024px) {
-.container{
- 	height: 78vh; 
- 	max-height: 200vh; 
- }
- table{
- 	height: 30vh;
- 	width: 80vw;
- }
-  th,td {
-	font-weight: bold;
-	font-size: 30px;
-	max-width: 40vw;
-}
+@media only screen and (min-device-width : 768px) and (max-device-width
+	: 1024px) {
+	.container {
+		height: 80vh;
+		max-height: 200vh;
+	}
+	table {
+		height: 30vh;
+		width: 80vw;
+	}
+	th, td {
+		font-weight: bold;
+		font-size: 30px;
+		max-width: 40vw;
+	}
 }
 
 /* Desktops and laptops ----------- */
-@media only screen 
-and (min-width : 1224px) {
-.container{
- 	min-height: 25vh; 
- 	max-height: 200vh; 
- }
- table{
- 	min-height: 20vh;
- 	width: 50vw;
- }
- h3{
- 	font-size: 5px;
- }
+@media only screen and (min-width : 1224px) {
+	.container {
+		min-height: 30vh;
+		max-height: 200vh;
+	}
+	table {
+		min-height: 20vh;
+		width: 50vw;
+		margin-bottom: 5vh;
+	}
+	h3 {
+		font-size: 15px;
+	}
 }
 
 /* Large screens ----------- */
-@media only screen 
-and (min-width : 1824px) {
-.container{
- 	min-height: 25vh;
- 	max-height: 200vh;
- }
- table{
- 	min-height: 20vh;
- 	width: 50vw;
- }
- h3{
- 	font-size: 5px;
- }
+@media only screen and (min-width : 1824px) {
+	.container {
+		min-height: 25vh;
+		max-height: 200vh;
+	}
+	table {
+		min-height: 20vh;
+		width: 50vw;
+	}
+	h3 {
+		font-size: 5px;
+	}
 }

@@ -1,13 +1,13 @@
 @charset "ISO-8859-1";
 
-html, body{
+html, body {
 	margin: 0px;
 	padding: 0px;
 	margin-bottom: 0px;
 }
 
 .container {
-	background-color: #a7d9e7;
+	background-color: white;
 	background-size: cover;
 	background-position: center;
 	display: flex;
@@ -20,8 +20,10 @@ html, body{
 }
 
 table {
+	background-color: #00478e;
 	border-collapse: collapse;
 	width: 100%;
+	color: white;
 	border: 2px solid;
 	padding: 10px 10px 0px 10px;
 	border-radius: 5px;
@@ -48,68 +50,69 @@ td {
 	color: white;
 }
 
-/* Smartphones (portrait and landscape) ----------- */
-@media only screen 
-and (min-device-width : 320px) 
-and (max-device-width : 480px) {
-.container{
- 	min-height: 86vh;
- }
- table{
- 	min-height: 60vh;
- 	width: 80vw;
- }
- th,td {
-	font-weight: bold;
-	font-size: 30px;
-	max-width: 40vw;
+.GFG {
+	background-color: #00478e;
+	color: white;
 }
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width
+	: 480px) {
+	.container {
+		min-height: 88vh;
+	}
+	table {
+		min-height: 60vh;
+		width: 80vw;
+	}
+	th, td {
+		font-weight: bold;
+		font-size: 30px;
+		max-width: 40vw;
+	}
 }
 
 /* iPads (portrait and landscape) ----------- */
-@media only screen 
-and (min-device-width : 768px) 
-and (max-device-width : 1024px) {
-.container{
- 	height: 78vh; 
- }
- table{
- 	min-height: 30vh;
- 	width: 80vw;
- }
-  th,td {
-	font-weight: bold;
-	font-size: 30px;
-	max-width: 40vw;
-}
+@media only screen and (min-device-width : 768px) and (max-device-width
+	: 1024px) {
+	.container {
+		height: 80vh;
+	}
+	table {
+		min-height: 30vh;
+		width: 80vw;
+	}
+	th, td {
+		font-weight: bold;
+		font-size: 30px;
+		max-width: 40vw;
+	}
 }
 
 /* Desktops and laptops ----------- */
-@media only screen 
-and (min-width : 1224px) {
-.container{
- 	min-height: 25vh; 
- }
- table{
- 	min-height: 20vh;
- 	width: 50vw;
- }
- h3{
- 	font-size: 5px;
- }
+@media only screen and (min-width : 1224px) {
+	.container {
+		min-height: 25vh;
+	}
+	table {
+		min-height: 20vh;
+		width: 50vw;
+	}
+	h3 {
+		font-size: 5px;
+	}
 }
 
 /* Large screens ----------- */
-@media only screen 
-and (min-width : 1824px) {
-.container{
- 	min-height: 25vh;
- }
- table{
- 	min-height: 20vh;
- 	width: 50vw;
- }
- h3{
- 	font-size: 5px;
- }
+@media only screen and (min-width : 1824px) {
+	.container {
+		min-height: 25vh;
+	}
+	table {
+		min-height: 20vh;
+		width: 50vw;
+	}
+	h3 {
+		font-size: 5px;
+	}
 }
