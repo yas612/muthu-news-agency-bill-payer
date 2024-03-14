@@ -36,8 +36,14 @@
 		<input type="number" name="bill" value="${user.bill}" step="any" required /><br>
 		<label for="Bill Status">பில் நிலை : </label> <br>
 		<select name="status">
-			<option value="PAID">PAID</option>
-			<option value="NOT-PAID" selected="selected">NOT-PAID</option>
+			<c:if test="${user.status == 'PAID'}">
+				<option value="PAID" selected="selected">PAID</option>
+				<option value="NOT-PAID">NOT-PAID</option>
+			</c:if>
+			<c:if test="${user.status == 'NOT-PAID'}">
+				<option value="NOT-PAID" selected="selected">NOT-PAID</option>
+				<option value="PAID">PAID</option>
+			</c:if>
 		</select><br>
 		<input class="submit-btn" type="submit" id="submit" value="மாற்று" />
 
