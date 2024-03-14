@@ -19,15 +19,13 @@ import com.muthu.news.mapper.UserRowMapper;
 public class ProductServiceImpl implements ProductService {
 
 	private static final Logger logger = Logger.getLogger(ProductServiceImpl.class);
-	
-	private CodeAndTamilLangHandler handler = new CodeAndTamilLangHandler();
 
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 
 	@Override
 	public List<Product> getAll() throws CustomException {
-		logger.info("Fetching all Papers");
+		// logger.info("Fetching all Papers");
 		List<Product> products = null;
 		try {
 			products = jdbcTemplate.query(MuthuConstants.GET_ALL_PRODUCT, new ProductRowMapper());
@@ -39,15 +37,15 @@ public class ProductServiceImpl implements ProductService {
 			logger.error("Fetched 0 papers.");
 			return null;
 		}
-		logger.info("Fetched papers count : " + products.size());
+		// logger.info("Fetched papers count : " + products.size());
 		return products;
 	}
 
 	@Override
 	public Product addProduct(Product product) {
-		//String encodedCode = handler.tamilToUnicode(product.getCode());
+		// String encodedCode = handler.tamilToUnicode(product.getCode());
 		try {
-			logger.info("Adding NEW paper with details : " + product.toString());
+			// logger.info("Adding NEW paper with details : " + product.toString());
 			jdbcTemplate.update(MuthuConstants.ADD_PRODUCT,
 					new Object[] { product.getCode(), product.getName(), product.getPrice() });
 		} catch (Exception e) {
@@ -55,7 +53,8 @@ public class ProductServiceImpl implements ProductService {
 			logger.error(e.getMessage());
 			return null;
 		}
-		logger.info("SUCCESSFULLY added product with details : " + product.toString());
+		// logger.info("SUCCESSFULLY added product with details : " +
+		// product.toString());
 		return product;
 	}
 
@@ -75,8 +74,9 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public Boolean remProduct(String code) {
 		Boolean decider = false;
-		logger.info("Request to remove a paper with code : " + code);
+		// logger.info("Request to remove a paper with code : " + code);
 		try {
+			handleAffectedUsersForDel(code);
 			decider = jdbcTemplate.update(MuthuConstants.DEL_PRODUCT, new Object[] { code }) == 1;
 		} catch (Exception e) {
 			logger.error("Error occurred while removing paper");
@@ -85,6 +85,7 @@ public class ProductServiceImpl implements ProductService {
 		return decider;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public Product getAProduct(String code) {
 		Product product = null;
@@ -100,11 +101,11 @@ public class ProductServiceImpl implements ProductService {
 
 	public void handleAffectedUsersForUpdate(String code, Double price) {
 		List<User> affectedUsers = null;
-		logger.info("Handling affected users");
+		// logger.info("Handling affected users");
 		try {
 			affectedUsers = jdbcTemplate.query(MuthuConstants.AFFETCTED_USERS.replace("param", code),
 					new UserRowMapper());
-			logger.info("Total affected users : " + affectedUsers.size());
+			// logger.info("Total affected users : " + affectedUsers.size());
 		} catch (Exception e) {
 			logger.error("ERROR occurred while fetching affected users");
 			logger.error(e.getMessage());
@@ -116,6 +117,40 @@ public class ProductServiceImpl implements ProductService {
 			} catch (Exception e) {
 				logger.error("ERROR occurred while updating the affected user with detail : " + user.toString());
 				logger.error(e.getMessage());
+			}
+		}
+	}
+
+	public void handleAffectedUsersForDel(String code) {
+		List<User> affectedUsers = null;
+		Product product = getAProduct(code);
+		try {
+			affectedUsers = jdbcTemplate.query(MuthuConstants.AFFETCTED_USERS.replace("param", code),
+					new UserRowMapper());
+			// logger.info("Total affected users : " + affectedUsers.size());
+		} catch (Exception e) {
+			logger.error("ERROR occurred while fetching affected users");
+			logger.error(e.getMessage());
+		}
+
+		for (User user : affectedUsers) {
+			Double userBill = user.getBill();
+			String papers = user.getPapers().replaceAll("\\s", "");
+
+			if (papers.endsWith(code) && papers.contains(",")) {
+				user.setPapers(papers.replaceAll(",".concat(code), ""));
+				user.setBill(userBill - product.getPrice());
+				jdbcTemplate.update(MuthuConstants.UPDATE_USER_PAPERS_AND_BILL,
+						new Object[] { user.getPapers(), user.getBill(), user.getMob() });
+			} else {
+				if (papers.contains(",")) {
+					user.setPapers(papers.replaceAll(code.concat(","), ""));
+					user.setBill(userBill - product.getPrice());
+					jdbcTemplate.update(MuthuConstants.UPDATE_USER_PAPERS_AND_BILL,
+							new Object[] { user.getPapers(), user.getBill(), user.getMob() });
+				} else {
+					jdbcTemplate.update(MuthuConstants.DEL_USER, new Object[] { user.getMob() });
+				}
 			}
 		}
 	}
