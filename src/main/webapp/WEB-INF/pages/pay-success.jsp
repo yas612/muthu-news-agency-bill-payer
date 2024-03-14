@@ -2,7 +2,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Insert title here</title>
+<title>Muthu News Agency</title>
+<link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/img/logo.png">
 <%@ include file="header.jsp" %> 
 </head>
 <body>
