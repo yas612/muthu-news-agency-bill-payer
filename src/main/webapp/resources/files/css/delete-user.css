@@ -29,7 +29,7 @@ label {
 	justify-content: center;
 	align-items: center;
 	text-align: center;
-	color: white;
+	color: #00478e;
 	height: 70vh;
 }
 
@@ -67,6 +67,9 @@ label {
 	}
 	#submit {
 		width: 20vw;
+	}
+	p{
+		font-size: 30px;
 	}
 }
 

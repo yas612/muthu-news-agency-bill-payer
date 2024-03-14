@@ -101,6 +101,10 @@ input {
 		width: 80vw;
 		padding: 0px 0px 0px 25px;
 	}
+	p {
+		width: 80vw;
+		word-wrap: break-word;
+	}
 	input {
 		height: 3vh;
 		width: 70vw;

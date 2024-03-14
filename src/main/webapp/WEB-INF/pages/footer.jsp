@@ -12,7 +12,7 @@
 		<div class="footer">
 			<div class="footer-left">
 				Email us: <a href="mailto:muthunewsagent97@gmail.com">muthunewsagent97@gmail.com</a><br>
-				Contact us : +91 90251 21449<br>
+				Contact us : <a href="tel:+90251 21449">+91 90251 21449</a><br>
 				<div class="spacer"></div>
 				<address>
 					Address : <br>2/125,<br> Suthanthira Nagar 1st Street,<br>
