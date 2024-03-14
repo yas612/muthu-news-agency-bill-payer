@@ -19,9 +19,9 @@ import com.muthu.news.service.ProductService;
 @RestController
 @RequestMapping("/admin/product")
 public class ProductController {
-	
+
 	private static final Logger logger = Logger.getLogger(ProductController.class);
-	
+
 	private CodeAndTamilLangHandler handler = new CodeAndTamilLangHandler();
 
 	@Autowired
@@ -32,7 +32,7 @@ public class ProductController {
 		ModelAndView mView = new ModelAndView();
 		mView.setViewName(MuthuConstants.PRODUCT_PAGE);
 		List<Product> productlist = service.getAll();
-		for(Product product : productlist) {
+		for (Product product : productlist) {
 			String Actualcode = product.getCode();
 			String convertedCode = handler.tamilToUnicode(Actualcode);
 			product.setCode(handler.backSlashReplacer(convertedCode));
@@ -54,7 +54,7 @@ public class ProductController {
 	}
 
 	@RequestMapping("/all/addProduct")
-	public ModelAndView addProduct(@RequestParam(MuthuConstants.CODE) String code, 
+	public ModelAndView addProduct(@RequestParam(MuthuConstants.CODE) String code,
 			@RequestParam(MuthuConstants.NAME) String name, @RequestParam(MuthuConstants.PRICE) Double price) {
 		Product product = new Product();
 		product.setCode(code);
@@ -64,32 +64,34 @@ public class ProductController {
 		ModelAndView mView = new ModelAndView();
 		mView.setViewName(MuthuConstants.ADD_PRODUCT_PAGE);
 		if (verifier == null) {
-			mView.addObject(MuthuConstants.ERROR_MSG, String.format(MuthuConstants.ADD_PRODUCT_ERROR_MSG, 
-					product.toString()));
+			mView.addObject(MuthuConstants.ERROR_MSG,
+					String.format(MuthuConstants.ADD_PRODUCT_ERROR_MSG, product.toString()));
 		} else {
-			mView.addObject(MuthuConstants.ERROR_MSG, String.format(MuthuConstants.ADD_PRODUCT_SUCCESS_MSG, 
-					product.toString()));
+			mView.addObject(MuthuConstants.ERROR_MSG,
+					String.format(MuthuConstants.ADD_PRODUCT_SUCCESS_MSG, product.toString()));
 			mView.addObject("product", product);
 		}
 		return mView;
 	}
 
 	@RequestMapping("/all/editPage/editProduct")
-	public ModelAndView editProduct(@RequestParam(MuthuConstants.CODE) String code, @RequestParam(MuthuConstants.NAME) 
-	String name, @RequestParam(MuthuConstants.PRICE) Double price, @RequestParam(MuthuConstants.PREVIOUS_PRICE) 
-	Double previousPrice) throws CustomException {
+	public ModelAndView editProduct(@RequestParam(MuthuConstants.CODE) String code,
+			@RequestParam(MuthuConstants.NAME) String name, @RequestParam(MuthuConstants.PRICE) Double price,
+			@RequestParam(MuthuConstants.PREVIOUS_PRICE) Double previousPrice) throws CustomException {
 		Product product = new Product();
 		product.setCode(code);
 		product.setName(name);
 		product.setPrice(price);
-		logger.info("Request to update a paper, previous price : "+previousPrice+ " & NEW price : "+price);
+		//logger.info("Request to update a paper, previous price : " + previousPrice + " & NEW price : " + price);
 		Product verifier = service.updateProduct(product, (price - previousPrice));
 		ModelAndView mView = new ModelAndView();
 		mView.setViewName(MuthuConstants.EDIT_PRODUCT_PAGE);
 		if (verifier == null) {
-			mView.addObject(MuthuConstants.ERROR_MSG, String.format(MuthuConstants.EDIT_PRODUCT_ERROR_MSG, product.toString()));
+			mView.addObject(MuthuConstants.ERROR_MSG,
+					String.format(MuthuConstants.EDIT_PRODUCT_ERROR_MSG, product.toString()));
 		} else {
-			mView.addObject(MuthuConstants.ERROR_MSG, String.format(MuthuConstants.EDIT_PRODUCT_SUCCESS_MSG, product.toString()));
+			mView.addObject(MuthuConstants.ERROR_MSG,
+					String.format(MuthuConstants.EDIT_PRODUCT_SUCCESS_MSG, product.toString()));
 			mView.addObject("product", product);
 		}
 		return mView;

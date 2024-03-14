@@ -92,8 +92,12 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [mob=" + mob + ", reg=" + reg + ", name=" + name + ", status=" + status + ", papers=" + papers
-				+ ", bill=" + bill + "]";
+		return "[கைபேசி எண்: " + mob + ", "
+				+ "பகுதி: " + reg + ", "
+				+ "பெயர்: " + name + ", "
+				+ "பில் நிலை: " + status + ", "
+				+ "செய்தி தாள்கள்: " + papers
+				+ ", பில் மதிப்பு: " + bill + "]";
 	}
 	
 	

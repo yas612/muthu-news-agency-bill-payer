@@ -17,13 +17,16 @@ public class DBConfig {
 
 	@Value("${DB_PASS}")
 	private String pass;
+	
+	@Value("${DB_URL}")
+	private String dbURL;
 
 	@Bean(name = "appDataSource")
 	@Primary
 	public DataSource dataSource() {
 		DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
 		driverManagerDataSource.setDriverClassName("org.postgresql.Driver");
-		driverManagerDataSource.setUrl("jdbc:postgresql://localhost:5432/muthu-news");
+		driverManagerDataSource.setUrl(dbURL);
 		driverManagerDataSource.setUsername(user);
 		driverManagerDataSource.setPassword(pass);
 		return driverManagerDataSource;

@@ -51,14 +51,7 @@ public class MuthuNewsSecurityConfig {
 						.requestMatchers(new AntPathRequestMatcher("/img/**")).permitAll()
 						.requestMatchers(new AntPathRequestMatcher(MuthuConstants.ADMIN_PATH))
 						.hasRole(MuthuConstants.ADMIN_ROLE).anyRequest().authenticated()) // other URLs are only allowed
-																							// authenticated users.
-				/*
-				 * .logout(logout -> logout .logoutUrl("/admin/logout") .addLogoutHandler(new
-				 * SecurityContextLogoutHandler()) )
-				 */
 				.httpBasic();
-		// http.sessionManagement(httpSecuritySessionManagementConfigurer ->
-		// httpSecuritySessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED));
 		return http.build();
 	}
 

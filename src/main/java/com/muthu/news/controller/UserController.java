@@ -38,7 +38,7 @@ public class UserController {
 
 	@RequestMapping("/all")
 	public ModelAndView allUsers(HttpServletRequest request, @RequestParam String page) throws CustomException {
-		int recordsPerPage = 50;
+		int recordsPerPage = MuthuConstants.recordsPerPage;
 		int reqPage = Integer.parseInt(page);
 
 		List<User> userlist = service.getAllUser(recordsPerPage, ((reqPage * recordsPerPage) - recordsPerPage));
@@ -67,7 +67,7 @@ public class UserController {
 	@RequestMapping("/all/filter/{params}")
 	public ModelAndView allUsersByFilter(HttpServletRequest request, @RequestParam String page,
 			@PathVariable String params) throws CustomException {
-		int recordsPerPage = 50;
+		int recordsPerPage = MuthuConstants.recordsPerPage;
 		int reqPage = Integer.parseInt(page);
 
 		List<User> userlist = service.getAllUserByFilter(recordsPerPage, ((reqPage * recordsPerPage) - recordsPerPage),
@@ -81,8 +81,7 @@ public class UserController {
 		} else {
 			int dummyVal = userlist.size() - 1;
 			int noOfRecords = Integer.parseInt(userlist.get(dummyVal).getMob());
-			userlist.remove(userlist.size() - 1);
-			Set<String> reg = service.getAllUser().stream().map(User::getReg).collect(Collectors.toSet());
+			userlist.remove(dummyVal);
 			int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
 			request.setAttribute("noOfPages", noOfPages);
 			request.setAttribute("currentPage", page);
@@ -158,14 +157,13 @@ public class UserController {
 
 	@RequestMapping("/all/editPage/edituser")
 	public ModelAndView editUser(@RequestParam String mob, @RequestParam String name, @RequestParam String reg,
-			@RequestParam(required = false) String updatedPapers, @RequestParam Double bill, @RequestParam String status, 
-			@RequestParam String papers) throws CustomException {
+			@RequestParam(required = false) String updatedPapers, @RequestParam Double bill,
+			@RequestParam String status, @RequestParam String papers) throws CustomException {
 		Boolean billDecider = false;
 		User user = new User();
-		if(updatedPapers == null || updatedPapers.isBlank()) {
+		if (updatedPapers == null || updatedPapers.isBlank()) {
 			user.setPapers(papers);
-		}
-		else {
+		} else {
 			user.setPapers(updatedPapers);
 			billDecider = true;
 		}

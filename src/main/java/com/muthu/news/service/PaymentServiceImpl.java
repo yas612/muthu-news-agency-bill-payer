@@ -1,7 +1,6 @@
 package com.muthu.news.service;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -186,10 +185,8 @@ public class PaymentServiceImpl implements PaymentService {
 								logger.error("Payment object retrieved is NULL");
 							}
 						}
-					}
-					else {
-						template.update(MuthuConstants.NON_ELIGIBLE_ORDER,
-								new Object[] { payment.getOrderid() });
+					} else {
+						template.update(MuthuConstants.NON_ELIGIBLE_ORDER, new Object[] { payment.getOrderid() });
 					}
 				}
 			}

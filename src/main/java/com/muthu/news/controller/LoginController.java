@@ -1,7 +1,6 @@
 package com.muthu.news.controller;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +35,7 @@ public class LoginController {
 		ModelAndView mView = new ModelAndView();
 		User user;
 		if (decider) {
-			logger.info("User exist with mobile number : " + mob);
+			//logger.info("User exist with mobile number : " + mob);
 			user = userService.getUserInfo(mob);
 			if (user.getStatus().equalsIgnoreCase(MuthuConstants.PAID)) {
 				mView.addObject(MuthuConstants.DECIDER, MuthuConstants.DISABLER);
@@ -48,7 +47,7 @@ public class LoginController {
 			mView.addObject("user", user);
 			return mView;
 		} else {
-			logger.info("User doesn't exist with mobile number : " + mob);
+			//logger.info("User doesn't exist with mobile number : " + mob);
 			mView.setViewName(MuthuConstants.LOGIN_PAGE);
 			mView.addObject(MuthuConstants.ERROR_MSG, String.format(MuthuConstants.USER_NOT_EXIST, mob));
 			return mView;
@@ -62,12 +61,4 @@ public class LoginController {
 		mView.setViewName(MuthuConstants.ADMIN_PAGE);
 		return mView;
 	}
-	
-	/*
-	 * @RequestMapping(value = "/admin/logout") public String
-	 * logout(HttpServletRequest request) { HttpSession session =
-	 * request.getSession(false); if (session != null) { session.invalidate();
-	 * session.setMaxInactiveInterval(60*60); } return "redirect:/loginpage";
-	 * //Where you go after logout here. }
-	 */
 }

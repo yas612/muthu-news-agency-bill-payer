@@ -27,7 +27,7 @@ function openCheckout(mob) {
 		"amount": amount,
 		"currency": "INR",
 		"name": "Muthu News Agency",
-		"description": "Trusted company over years.",
+		"description": "News Paper Bill.",
 		"image": imgurl,
 		"order_id": orderId,
 		"callback_url": callBackUrl + mob,
@@ -36,34 +36,34 @@ function openCheckout(mob) {
 			"email": "",
 			"contact": mob
 		},
-	config: {
-    display: {
-      blocks: {
-        banks: {
-          name: 'All payment methods',
-          instruments: [
-            {
-              method: 'upi'
-            },
-            {
-              method: 'card'
-            },
-            {
-                method: 'wallet'
-            },
-            {
-                method: 'netbanking'
-            }
-          ],
-        },
-      },
-      sequence: ['block.banks'],
-      preferences: {
-        show_default_blocks: false,
-      },
-    },
-  },
-};
+		config: {
+			display: {
+				blocks: {
+					banks: {
+						name: 'Payment Options',
+						instruments: [
+							{
+								method: 'upi'
+							},
+							{
+								method: 'card'
+							},
+							{
+								method: 'wallet'
+							},
+							{
+								method: 'netbanking'
+							}
+						],
+					},
+				},
+				sequence: ['block.banks'],
+				preferences: {
+					show_default_blocks: false,
+				},
+			},
+		},
+	};
 	var rzp1 = new Razorpay(options);
 	document.getElementById('rzp-button1').onclick = function(e) {
 		rzp1.open();

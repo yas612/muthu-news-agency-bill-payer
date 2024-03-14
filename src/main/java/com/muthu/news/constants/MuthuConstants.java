@@ -38,6 +38,7 @@ public class MuthuConstants {
 	public static final String PAYMENT_VERIFY_EXCLUDE = "/pay/verify/**";
 	public static final String RESOURCES_EXCLUDE = "/resources/**";
 	public static final String ADMIN_PATH = "/admin/**";
+	public static final int recordsPerPage = 50;
 	
 	//json
 	public static final String AMOUNT = "amount";
@@ -92,6 +93,7 @@ public class MuthuConstants {
 	public static final String AFFETCTED_USERS = "SELECT * FROM \"muthuUsers\" WHERE papers LIKE '%param%'";
 	public static final String UPDATE_USER_BILL = "UPDATE \"muthuUsers\" SET bill=? WHERE mob=?";
 	public static final String UPDATE_USER_STATUS = "UPDATE \"muthuUsers\" SET status=? WHERE mob=?";
+	public static final String UPDATE_USER_PAPERS_AND_BILL = "UPDATE \"muthuUsers\" SET papers=?, bill=? WHERE mob=?";
 	public static final String UPDATE_EVERYONE_STATUS = "UPDATE \"muthuUsers\" SET status='NOT-PAID'";
 	public static final String ADD_USER = "INSERT INTO \"muthuUsers\" (mob, name, reg, papers, bill, status)\r\n"
 			+ "	VALUES (?, ?, ?, ?, ?, ?)";
