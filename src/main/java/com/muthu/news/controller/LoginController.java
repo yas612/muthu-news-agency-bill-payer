@@ -49,7 +49,7 @@ public class LoginController {
 		} else {
 			//logger.info("User doesn't exist with mobile number : " + mob);
 			mView.setViewName(MuthuConstants.LOGIN_PAGE);
-			mView.addObject(MuthuConstants.ERROR_MSG, String.format(MuthuConstants.USER_NOT_EXIST, mob));
+			mView.addObject(MuthuConstants.ERROR_MSG, MuthuConstants.USER_NOT_EXIST);
 			return mView;
 		}
 

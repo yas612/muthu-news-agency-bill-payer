@@ -3,22 +3,24 @@ package com.muthu.news.config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 
 import com.muthu.news.SecretManager;
 
 @Configuration
+@PropertySource("classpath:application.properties")
 public class SecretManagerConfig {
 
-	@Value("${KEY_ID}")
+	@Value("${muthu.news.key.id}")
 	private String key;
 
-	@Value("${KEY_SECRET}")
+	@Value("${muthu.news.key.secret}")
 	private String secret;
 	
-	@Value("${adSec}")
+	@Value("${muthu.news.ad}")
 	private String adSec;
 	
-	@Value("${adPs}")
+	@Value("${muthu.news.ps}")
 	private String adPs;
 
 	@Bean

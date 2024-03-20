@@ -195,7 +195,7 @@ public class UserServiceImpl implements UserService {
 			for (String paper : papersAvailedNow) {
 				for (Product pro : products) {
 					if (paper.equalsIgnoreCase(pro.getCode())) {
-						logger.info("User availed paper : " + pro.getName());
+						//logger.info("User availed paper : " + pro.getName());
 						updatedPrice = updatedPrice + pro.getPrice();
 					}
 				}

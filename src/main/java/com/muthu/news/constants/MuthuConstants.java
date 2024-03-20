@@ -3,7 +3,7 @@ package com.muthu.news.constants;
 public class MuthuConstants {
 	
 	public static final String ERROR_MSG = "errorMsg";
-	public static final String USER_NOT_EXIST = "Your mobile Number %s doesn't exists !!!";
+	public static final String USER_NOT_EXIST = "Your mobile Number doesn't exists !!!";
 	public static final String DECIDER = "decider";
 	public static final String DISABLER = "disabled=\"disabled\"";
 	public static final String ALL_PRODUCTS_FETCH_ERROR = "ERROR occured while fetching Product details";
