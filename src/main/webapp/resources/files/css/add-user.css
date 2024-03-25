@@ -71,7 +71,7 @@ form {
 		max-height: 200vh;
 	}
 	form {
-		height: 70vh;
+		min-height: 70vh;
 		margin-bottom: 4vh;
 	}
 	select {

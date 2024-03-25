@@ -183,6 +183,7 @@ public class PaymentServiceImpl implements PaymentService {
 
 							} else {
 								logger.error("Payment object retrieved is NULL");
+								template.update(MuthuConstants.NON_ELIGIBLE_ORDER, new Object[] { payment.getOrderid() });
 							}
 						}
 					} else {

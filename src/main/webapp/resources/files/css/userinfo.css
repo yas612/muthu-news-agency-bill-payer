@@ -15,7 +15,7 @@ body {
 	align-items: center;
 	text-align: center;
 	color: #00478e;
-	height: 80vh;
+	min-height: 80vh;
 	width: 100%;
 }
 
@@ -65,17 +65,22 @@ textarea {
 	height: 5vh;
 	color: white;
 	margin-top: 1vh;
+	border-radius: 5px;
+}
+
+.term {
+	color: black;
 }
 
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen and (min-device-width : 320px) and (max-device-width
 	: 480px) {
 	.container {
-		height: 88vh;
+		min-height: 88vh;
 	}
 	.form-container {
 		margin-top: 5vh;
-		height: 68vh;
+		min-height: 68vh;
 		width: 80vw;
 	}
 	input, label, textarea, .submit {
@@ -97,13 +102,17 @@ textarea {
 	input {
 		height: 3vh;
 	}
+	.wTerm {
+		margin-top: 0.8vh;
+		font-size: 13px;
+	}
 }
 
 /* iPads (portrait and landscape) ----------- */
 @media only screen and (min-device-width : 768px) and (max-device-width
 	: 1024px) {
 	.container {
-		height: 81vh;
+		min-height: 81vh;
 	}
 	.form-container {
 		margin-top: 5vh;
@@ -137,6 +146,13 @@ textarea {
 		margin-top: 1vh;
 		font-weight: bold;
 	}
+	.wTerm {
+		margin-top: 3vh;
+		font-size: 8px;
+	}
+	#rzp-button1 {
+		margin-top: 2vh;
+	}
 }
 
 /* Large screens ----------- */
@@ -146,5 +162,20 @@ textarea {
 	}
 	.form-container {
 		height: 53vh;
+	}
+	.container {
+		height: 65vh;
+	}
+	.form-container {
+		height: 53vh;
+		font-size: 12px;
+	}
+	label {
+		margin-top: 1vh;
+		font-weight: bold;
+	}
+	.wTerm {
+		margin-top: 3vh;
+		font-size: 8px;
 	}
 }

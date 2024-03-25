@@ -97,7 +97,7 @@ input {
 		font-size: 40px;
 	}
 	.form-container {
-		height: 75vh;
+		min-height: 75vh;
 		width: 80vw;
 		padding: 0px 0px 0px 25px;
 	}

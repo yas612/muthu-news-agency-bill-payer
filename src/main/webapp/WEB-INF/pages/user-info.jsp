@@ -7,7 +7,11 @@
 <title>Muthu News Agency</title>
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script src="<c:url value="/resources/js/pay.js" />"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js" type="text/javascript"></script>
 <link href="${pageContext.request.contextPath}/resources/css/userinfo.css" rel="stylesheet">
+<link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/blitzer/jquery-ui.css"
+    rel="stylesheet" type="text/css" />
 <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/img/logo.png">
 </head>
 <body>
@@ -34,6 +38,8 @@
 		</div>
 		<button id="rzp-button1" class="submit" value="Pay" ${decider}
 			onclick="createOrderId('${user.bill}', '${user.mob}', '${url}')">Pay</button>
+		<p class="wTerm">By clicking Pay you accept the <a href="#" id="uftandcBtn" class="term"> Terms & Conditions </a>
+		and <a href="#" id="ufpandpbtn" class="term">Privacy Policy</a></p>
 	</div>
 	<%@ include file="footer.jsp"%>
 </body>

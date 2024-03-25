@@ -161,7 +161,7 @@ public class UserController {
 			@RequestParam String status, @RequestParam String papers) throws CustomException {
 		Boolean billDecider = false;
 		User user = new User();
-		if (updatedPapers == null || updatedPapers.isBlank()) {
+		if (updatedPapers == null || "".equals(updatedPapers)) {
 			user.setPapers(papers);
 		} else {
 			user.setPapers(updatedPapers);

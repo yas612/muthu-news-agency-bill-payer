@@ -30,7 +30,7 @@ public class MuthuConstants {
 	public static final String EXPECTED_PAY_STATUS = "captured";
 	public static final String EMPTY_VALUE = "";
 	public static final String DATE_FORMAT = "dd-MM-yyyy hh:mm:ss";
-	public static final String SCHEDULE = "00 00 01 * * *";
+	public static final String SCHEDULE = "00 01 05 * * *";
 	public static final String ADMIN_ROLE = "ADMIN";
 	public static final String LOGIN_PAGE_EXCLUDE = "/loginpage";
 	public static final String LOGIN_PATH_EXCLUDE = "/login**";
