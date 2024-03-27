@@ -37,6 +37,7 @@ public class MuthuNewsSecurityConfig {
 						.requestMatchers(new AntPathRequestMatcher(MuthuConstants.LOGIN_PATH_EXCLUDE)).permitAll()
 						.requestMatchers(new AntPathRequestMatcher(MuthuConstants.PAYMENT_PATH_EXCLUDE)).permitAll()
 						.requestMatchers(new AntPathRequestMatcher(MuthuConstants.PAYMENT_VERIFY_EXCLUDE)).permitAll()
+						.requestMatchers(new AntPathRequestMatcher(MuthuConstants.HOME_PATH_EXCLUDE)).permitAll()
 						.requestMatchers(new AntPathRequestMatcher(MuthuConstants.RESOURCES_EXCLUDE)).permitAll()
 						.requestMatchers(new AntPathRequestMatcher("/resources/files/**")).permitAll()
 						.requestMatchers(new AntPathRequestMatcher("/resources/files/img/**")).permitAll()

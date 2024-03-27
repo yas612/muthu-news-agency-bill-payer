@@ -13,8 +13,10 @@
 			src="${pageContext.request.contextPath}/resources/img/header-logo.png"
 			alt="Logo" /></a>
 		<div class="header-right">
-			<a class="active" href="/muthu-news-agency-bill-payer/loginpage"><button
+			<a class="active" href="/muthu-news-agency-bill-payer/home"><button
 					class="home">Home</button></a>
+					<a class="login" href="/muthu-news-agency-bill-payer/loginpage"><button
+					class="home">Login</button></a>
 		</div>
 	</div>
 </body>

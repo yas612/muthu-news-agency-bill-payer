@@ -34,6 +34,7 @@ public class MuthuConstants {
 	public static final String ADMIN_ROLE = "ADMIN";
 	public static final String LOGIN_PAGE_EXCLUDE = "/loginpage";
 	public static final String LOGIN_PATH_EXCLUDE = "/login**";
+	public static final String HOME_PATH_EXCLUDE = "/home";
 	public static final String PAYMENT_PATH_EXCLUDE = "/pay/**";
 	public static final String PAYMENT_VERIFY_EXCLUDE = "/pay/verify/**";
 	public static final String RESOURCES_EXCLUDE = "/resources/**";
@@ -71,6 +72,7 @@ public class MuthuConstants {
 	public static final String LOGIN_PAGE = "login";
 	public static final String USER_INFO = "user-info";
 	public static final String ADMIN_PAGE = "admin";
+	public static final String HOME_PAGE = "home";
 	public static final String PAY_PAGE = "pay";
 	public static final String PRODUCT_PAGE = "products";
 	public static final String ADD_PRODUCT_PAGE = "add-product";

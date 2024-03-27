@@ -22,6 +22,10 @@ img {
 	border-radius: 4px;
 }
 
+.login{
+	margin-left: 2vw;
+}
+
 /* Float the link section to the right */
 .header-right {
 	float: right;
@@ -55,8 +59,8 @@ img {
 		margin-top: 1vh;
 	}
 	.home {
-		font-size: 35px;
-		width: 15vw;
+		font-size: 28px;
+		width: 12vw;
 	}
 }
 

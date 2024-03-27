@@ -61,4 +61,11 @@ public class LoginController {
 		mView.setViewName(MuthuConstants.ADMIN_PAGE);
 		return mView;
 	}
+	
+	@RequestMapping("/home")
+	public ModelAndView home() {
+		ModelAndView mView = new ModelAndView();
+		mView.setViewName(MuthuConstants.HOME_PAGE);
+		return mView;
+	}
 }
